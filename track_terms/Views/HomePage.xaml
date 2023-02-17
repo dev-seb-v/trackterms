@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.HomePage"
+			 Title="Courses">
+	<ContentPage.Resources>
+		<Style TargetType="Grid">
+			<Setter Property="VisualStateManager.VisualStateGroups">
+				<VisualStateGroupList>
+					<VisualStateGroup x:Name="CommonStates">
+						<VisualState x:Name="Normal"/>
+						<VisualState x:Name="Selected">
+							<VisualState.Setters>
+								<Setter Property="BackgroundColor"
+								Value="LightGray"/>
+							</VisualState.Setters>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateGroupList>
+			</Setter>
+		</Style>
+	</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem  Text="Add Course" x:Name="GoToAddCourse" Clicked="GoToAddCourse_Clicked"/>
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<RefreshView Refreshing="RefreshView_Refreshing" x:Name="refreshCollectView">
+			<StackLayout HorizontalOptions="CenterAndExpand">
+			<Picker x:Name="termPicker" HorizontalOptions="Center" Title="choose a term to view" 
+					ItemsSource="{Binding Term}"
+					ItemDisplayBinding="{Binding TermName}"
+					SelectedIndexChanged="termPicker_SelectedIndexChanged"
+					/>
+			
+				<CollectionView x:Name="CourseView" SelectionMode="Single" 
+						EmptyView="Choose term to view courses! Refresh page if terms disappear."
+						HorizontalOptions="Start"
+						SelectionChanged="CourseView_SelectionChanged">
+					    
+					<CollectionView.ItemTemplate>
+						<DataTemplate>
+							<Grid Margin="20" BackgroundColor="White">
+
+								<Label   Grid.Row="1" 
+										Text= "{Binding CourseName}"
+											HorizontalTextAlignment="Center"
+												FontAttributes="Bold"/> 
+								<Label   Grid.Row="2" 
+										Text= "{Binding CourseStart, StringFormat='{0:MMMM dd, yyyy}'}"
+											HorizontalTextAlignment="Center"/>
+								<Label   Grid.Row="3" 
+										Text= "{Binding CourseEnd,  StringFormat='{0:MMMM dd, yyyy}'}"
+										HorizontalTextAlignment="Center"/>
+							</Grid>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+				</CollectionView>
+			</StackLayout>
+		</RefreshView> 
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.UpdateCourse"
+			 Title="Update Course">
+    <ContentPage.Content>
+		<ScrollView>
+		<StackLayout Margin="15">
+			<Label Text="Course Name" FontAttributes="Bold"/>
+			<Entry x:Name="CourseNameEntry"/>
+			<Label Text="Course Start"/>
+			<DatePicker x:Name="StartPicker"/>
+			<Label Text="Course End"/>
+			<DatePicker x:Name="EndPicker"/>
+			<Label Text="Course Status"/>
+			<Picker x:Name="StatusPicker"
+					ItemsSource="{Binding Status}"
+					ItemDisplayBinding="{Binding status}"
+					 />
+			<Label Text="Instructor Name"/>
+			<Entry x:Name="instructorEntry"/>
+			<Label Text="Instructor Email"/>
+			<Entry x:Name="InstructorEmailEntry"/>
+			<Label Text="Instructor Phone #"/>
+			<Entry x:Name="InstructorPhone"/>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Button x:Name="saveCourseBtn" 
+					Text="Save"
+					Clicked="saveCourseBtn_Clicked"/>
+				</StackLayout>
+			
+			
+
+		</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

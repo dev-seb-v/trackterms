@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.CourseDetailPage">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Share Course" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout VerticalOptions="CenterAndExpand"
+					 HorizontalOptions="Center"
+					 Margin="10">
+			<Label Text="Course Name" FontAttributes="Bold"/>
+			<Label x:Name="CourseNameLabel"/>
+			<Label Text="--------------------" FontAttributes="Bold"/>
+			<Label x:Name="CourseStartLabel" />
+			<Label x:Name="CourseEndLabel"/>
+			<Label Text="--------------------" FontAttributes="Bold"/>
+			<Label Text="Course Status" FontAttributes="Bold"/>
+			<Label x:Name="CourseStatusLabel"/>
+			<Label Text="--------------------" FontAttributes="Bold"/>
+			<Label Text="Your Instructor's Info" FontAttributes="Bold"/>
+			<Label x:Name="InstructorNameLabel"	/>
+			<Label x:Name="InstructorPhoneLabel"/>
+			<Label x:Name="InstructorEmailLabel"/>
+			<Label Text="--------------------" FontAttributes="Bold"/>
+			<Label Text="Assessments" FontAttributes="Bold"/>
+			<Label x:Name="PerformanceAssessmentLabel" Text="None"/>
+			<Label x:Name="ObjectiveAssessmentLabel" Text="None"/>
+			<Label Text="--------------------" FontAttributes="Bold"/>
+			<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >
+				<Button Text="Cancel" Clicked="Button_Clicked" WidthRequest="80"/>
+				<Button Text="Edit Course" x:Name="EditCourseButton"
+						Clicked="EditCourseButton_Clicked"
+						WidthRequest="80"/>
+				<Button Text="Add Assessment" WidthRequest="100" FontSize="Micro"/>
+				<Button Text="Delete Course" x:Name="DeleteCourseBtn"
+						Clicked="DeleteCourseBtn_Clicked" WidthRequest="80"/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.AddCourse"
+			 Title="{Binding TermName}">
+	
+    <ContentPage.Content>
+		<ScrollView>
+        <StackLayout>
+			<Label Text="Term ID"/>
+			<Entry BackgroundColor="LightGray"  x:Name="termIdEntry" Text="{Binding TermId}" IsReadOnly="true" IsEnabled="False"/>
+			<Label Text="Course Title"/>
+			<Entry x:Name="titleEntry" Placeholder="enter course title"/>
+			<Label Text="Course Status:Select One"/>
+			<Picker Title="Select a Status" x:Name="statusPicker"
+					ItemsSource="{Binding Status}"
+					ItemDisplayBinding="{Binding status}"
+					/>
+			<Label Text="start date"/>
+			<DatePicker x:Name="startPicker"/>
+			<Label Text="end date"/>
+			<DatePicker x:Name="endPicker"/>
+			<Label Text="Instructor Name"/>
+			<Entry x:Name="instructorEntry"/>
+			<Label Text="Instructor Email"/>
+			<Entry x:Name="InstructorEmailEntry"/>
+			<Label Text="Instructor Phone #"/>
+			<Entry x:Name="InstructorPhone"/>
+			<Button x:Name="saveCourseBtn"
+					Text="Save"
+					Clicked="saveCourseBtn_Clicked"/>
+		</StackLayout>
+	</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

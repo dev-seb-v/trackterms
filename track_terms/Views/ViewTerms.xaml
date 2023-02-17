@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.ViewTerms">
+	<ContentPage.Resources>
+		<Style TargetType="Grid">
+			<Setter Property="VisualStateManager.VisualStateGroups">
+				<VisualStateGroupList>
+					<VisualStateGroup x:Name="CommonStates">
+						<VisualState x:Name="Normal"/>
+						<VisualState x:Name="Selected">
+							<VisualState.Setters>
+								<Setter Property="BackgroundColor"
+								Value="LightGray"/>
+							</VisualState.Setters>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateGroupList>
+			</Setter>
+		</Style>
+	</ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+					 HorizontalOptions="Center"
+					 Margin="10"
+					 >
+			<CollectionView x:Name="TermView" SelectionMode="Single"
+							SelectionChanged="TermView_SelectionChanged">
+
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Grid Margin="5" Padding="10" BackgroundColor="WhiteSmoke">
+
+							<Label   Grid.Row="0" 
+										Text= "{Binding TermNameOutput}"
+											HorizontalTextAlignment="Center"
+												FontAttributes="Bold"/>
+							<Label   Grid.Row="1" 
+										Text= "{Binding TermDate}"
+											HorizontalTextAlignment="Center"/>
+							<Label   Grid.Row="2" 
+										Text= "-----------------------------------"
+										HorizontalTextAlignment="Center"/>
+						</Grid>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+			<StackLayout Orientation="Horizontal" Margin="100, 10, 100, 10">
+				<Button Text="Cancel" x:Name="CancelButton"
+						Clicked="CancelButton_Clicked"/>
+				<Button Text="Delete" x:Name="DeleteTermButton"
+						Clicked="DeleteTermButton_Clicked"/>
+			</StackLayout>
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>
