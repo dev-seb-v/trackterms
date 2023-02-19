@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using track_terms.Views;
+
 namespace track_terms
 {
 	public partial class App : Application
@@ -11,6 +13,7 @@ namespace track_terms
 		{
 			InitializeComponent();
 			MainPage = new AppShell();
+			
 		}
 
 		protected override void OnStart()

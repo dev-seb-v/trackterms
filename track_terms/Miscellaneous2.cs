@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using SQLite;
 using track_terms.Models;
 using track_terms.Services;
 

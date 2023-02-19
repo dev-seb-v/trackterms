@@ -29,8 +29,9 @@ namespace track_terms.Services
 
 			_db.CreateTable<Term>();
 			_db.CreateTable<Course>();
-			_db.CreateTable<Assessment>();
 			_db.CreateTable<Instructor>();
+			_db.CreateTable<PerformanceAssessment>();
+			_db.CreateTable<ObjectiveAssessment>();
 		}
 
 		#region Terms methods
@@ -102,7 +103,8 @@ namespace track_terms.Services
 			_db.DropTable<Term>();
 			_db.DropTable<Course>();
 			_db.DropTable<Instructor>();
-			_db.DropTable<Assessment>();
+			_db.DropTable<ObjectiveAssessment>();
+			_db.DropTable<PerformanceAssessment>();
 
 			_db = null;
 			_dbConnection = null;

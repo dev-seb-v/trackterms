@@ -26,10 +26,20 @@
 			<Entry x:Name="InstructorEmailEntry"/>
 			<Label Text="Instructor Phone #"/>
 			<Entry x:Name="InstructorPhone"/>
-			<Button x:Name="saveCourseBtn"
+				<Label Text="Add Objective Assessment"/>
+				<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
+				<Label Text="Due Date"/>
+				<DatePicker x:Name="objAssessmentDueDatePicker"/>
+				<Label Text="Add Performance Assessment"/>
+				<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter performance assess name"/>
+				<Label Text="Due Date"/>
+				<DatePicker x:Name="perfAssessmentDueDatePicker"/>
+
+				<Button x:Name="saveCourseBtn"
 					Text="Save"
 					Clicked="saveCourseBtn_Clicked"/>
-		</StackLayout>
+				
+			</StackLayout>
 	</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

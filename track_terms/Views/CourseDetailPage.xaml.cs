@@ -31,17 +31,12 @@ namespace track_terms.Views
 			InstructorNameLabel.Text = HelperClass.GetInstructorName(teacherId);
 			InstructorPhoneLabel.Text = HelperClass.GetInstructorPhone(teacherId);
 			InstructorEmailLabel.Text = HelperClass.GetInstructorEmail(teacherId);
-		}
-
-		protected override bool OnBackButtonPressed()
-		{
-			Navigation.PushAsync(new HomePage());
-			return base.OnBackButtonPressed();
+			//PerformanceAssessmentLabel.Text = "Performance Assessment is " + HelperClass.GetAssessmentInfo(id).ToUpper();
 		}
 
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
 		{
-			Shell.Current.GoToAsync("UpdateCourse");
+			Navigation.PushModalAsync(new UpdateCourse());
 		}
 
 		private async void DeleteCourseBtn_Clicked(object sender, EventArgs e)
@@ -60,5 +55,16 @@ namespace track_terms.Views
 		{
 			Shell.Current.GoToAsync("HomePage");
 		}
+		
+		private void addAssessmentBtn_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushModalAsync(new AddAssessmentPage());
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+		}
+
 	}
 }

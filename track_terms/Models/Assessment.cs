@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SQLite;
+using Plugin.LocalNotifications;
+
 
 namespace track_terms.Models
 {
 	public class Assessment
 	{
-		[PrimaryKey, AutoIncrement]
-		public int AssessmentId { get; set; }
+		// TODO trying to incorporate assessment into course
+
 		public string AssessmentName { get; set; }
-		public DateTime AssessmentStart { get; set; }
-		public DateTime AssessmentEnd { get; set; }
-		public string AssessmentType { get; set; }
 		public string AssessmentNotes { get; set; }
 
+		// main constructor
+		public Assessment(int courseId, string name, string type, string notes)
+		{
+			AssessmentName = name;
+			AssessmentNotes = notes;
+		}
+
+		public Assessment()
+		{
+		}
 	}
 }

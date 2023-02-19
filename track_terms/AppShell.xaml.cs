@@ -10,18 +10,15 @@ namespace track_terms
 		public AppShell()
 		{
 			InitializeComponent();
-			Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+			Routing.RegisterRoute("HomePage", typeof(HomePage));
 			Routing.RegisterRoute("HomePage/AddTerm", typeof(AddTerm));
 			Routing.RegisterRoute("HomePage/AddCourse", typeof(AddCourse));
 			Routing.RegisterRoute("HomePage/ViewTerms", typeof(ViewTerms));
-			Routing.RegisterRoute("HomePage/ViewCourse", typeof(CourseDetailPage));
+			Routing.RegisterRoute("HomePage/CourseDetailPage", typeof(CourseDetailPage));
 			Routing.RegisterRoute("HomePage/ForTesting", typeof(ForTesting));
 			Routing.RegisterRoute("HomePage/UpdateCourse", typeof(UpdateCourse));
+			Routing.RegisterRoute("HomePage/CourseDetailPage/AddAssessmentPage", typeof(AddAssessmentPage));
 		}
 
-		protected override bool OnBackButtonPressed()
-		{
-			return true;			
-		}
 	}
 }

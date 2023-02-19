@@ -9,6 +9,7 @@ namespace track_terms.Services
 {
 	public static class HelperClass
 	{
+
 		public static string returnCourseName(int id)
 		{
 			DB.Init();
@@ -179,6 +180,33 @@ namespace track_terms.Services
 			DB._db.Update(InstructorQuery);
 			DB._db.Update(CourseQuery);
 
+		}
+
+		public static void AddAssessment(int courseId, string name, string type, string notes)
+		{
+			DB.Init();
+			Assessment A = new Assessment()
+			{
+				CourseId = courseId,
+				AssessmentName = name,
+				AssessmentNotes = notes
+			};
+
+			DB._db.Insert(A); 
+
+			var id = A.AssessmentId;
+		}
+
+		public static string GetAssessmentInfo(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Assessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.AssessmentName;
+			}
+			else { return "not found"; }
 		}
 	}
 }

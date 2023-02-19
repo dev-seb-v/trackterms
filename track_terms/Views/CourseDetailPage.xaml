@@ -6,6 +6,7 @@
 		<ToolbarItem Text="Share Course" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
+		<ScrollView>
 		<StackLayout VerticalOptions="CenterAndExpand"
 					 HorizontalOptions="Center"
 					 Margin="10">
@@ -23,19 +24,21 @@
 			<Label x:Name="InstructorPhoneLabel"/>
 			<Label x:Name="InstructorEmailLabel"/>
 			<Label Text="--------------------" FontAttributes="Bold"/>
-			<Label Text="Assessments" FontAttributes="Bold"/>
-			<Label x:Name="PerformanceAssessmentLabel" Text="None"/>
-			<Label x:Name="ObjectiveAssessmentLabel" Text="None"/>
-			<Label Text="--------------------" FontAttributes="Bold"/>
+				<Label Text="Assessment Information"/>
+			
+				<Label Text="------------------------------------------------------------------------" FontAttributes="Bold"/>
 			<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >
 				<Button Text="Cancel" Clicked="Button_Clicked" WidthRequest="80"/>
 				<Button Text="Edit Course" x:Name="EditCourseButton"
 						Clicked="EditCourseButton_Clicked"
 						WidthRequest="80"/>
-				<Button Text="Add Assessment" WidthRequest="100" FontSize="Micro"/>
+				<Button Text="Add Assessment" WidthRequest="100" FontSize="Micro"
+						x:Name="addAssessmentBtn"
+						Clicked="addAssessmentBtn_Clicked"/>
 				<Button Text="Delete Course" x:Name="DeleteCourseBtn"
 						Clicked="DeleteCourseBtn_Clicked" WidthRequest="80"/>
 			</StackLayout>
 		</StackLayout>
+		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

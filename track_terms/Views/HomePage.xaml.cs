@@ -24,11 +24,6 @@ namespace track_terms.Views
 		public HomePage()
 		{
 			InitializeComponent();
-		}
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-			CourseView.ItemsSource = null;
 			using (SQLiteConnection con = new SQLiteConnection(DB.databasePath))
 			{
 				con.CreateTable<Term>();
@@ -40,15 +35,17 @@ namespace track_terms.Views
 				GoToAddCourse.IsEnabled = false;
 			}
 		}
-
-		protected override bool OnBackButtonPressed()
+		protected override void OnAppearing()
 		{
-			if (true)
-			{
-				Navigation.PushAsync(new HomePage());
-			}
-			return false;
+			base.OnAppearing();
+			termPicker.SelectedIndex = -1;
 		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+		}
+
 		private void GoToAddCourse_Clicked(object sender, EventArgs e)
 		{
 			Shell.Current.GoToAsync("AddCourse");
@@ -69,21 +66,5 @@ namespace track_terms.Views
 			Navigation.PushAsync(new CourseDetailPage());
 		}
 
-		private void RefreshView_Refreshing(object sender, EventArgs e)
-		{
-
-			refreshCollectView.IsRefreshing = false;
-			using (SQLiteConnection con = new SQLiteConnection(DB.databasePath))
-			{
-				con.CreateTable<Term>();
-				List<Term> terms = con.Table<Term>().ToList();
-				termPicker.ItemsSource = terms;
-			}
-			if (termPicker.SelectedItem == null)
-			{
-				GoToAddCourse.IsEnabled = false;
-			}
-			//termPicker_SelectedIndexChanged(sender, e);
-		}
 	}
 }

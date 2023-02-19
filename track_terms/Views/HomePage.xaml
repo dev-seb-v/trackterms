@@ -23,8 +23,11 @@
 	<ContentPage.ToolbarItems>
 		<ToolbarItem  Text="Add Course" x:Name="GoToAddCourse" Clicked="GoToAddCourse_Clicked"/>
 	</ContentPage.ToolbarItems>
+	
+	
+	
 	<ContentPage.Content>
-		<RefreshView Refreshing="RefreshView_Refreshing" x:Name="refreshCollectView">
+		<RefreshView  x:Name="refreshCollectView" IsRefreshing="false">
 			<StackLayout HorizontalOptions="CenterAndExpand">
 			<Picker x:Name="termPicker" HorizontalOptions="Center" Title="choose a term to view" 
 					ItemsSource="{Binding Term}"

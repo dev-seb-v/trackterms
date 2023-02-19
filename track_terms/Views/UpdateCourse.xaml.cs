@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using track_terms.Models;
 using track_terms.Services;
 
@@ -60,7 +56,7 @@ namespace track_terms.Views
 					StartPicker.Date,
 					EndPicker.Date
 					);
-				Shell.Current.GoToAsync("HomePage");
+				Navigation.PopModalAsync();
 			}
 		}
 
@@ -74,7 +70,7 @@ namespace track_terms.Views
 				return false;
 			}
 
-			else 
+			else
 			{
 				return true;
 			}
