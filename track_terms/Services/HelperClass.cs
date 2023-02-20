@@ -181,32 +181,66 @@ namespace track_terms.Services
 			DB._db.Update(CourseQuery);
 
 		}
-
-		public static void AddAssessment(int courseId, string name, string type, string notes)
+		public static void AddObjAssessment(int id, string name, string notes, DateTime due)
 		{
-			DB.Init();
-			Assessment A = new Assessment()
+
+			ObjectiveAssessment OA = new ObjectiveAssessment()
 			{
-				CourseId = courseId,
-				AssessmentName = name,
-				AssessmentNotes = notes
+				CourseId = id,
+				ObjAssessName = name,
+				ObjAssessNotes = notes,
+				DueDate = due
 			};
-
-			DB._db.Insert(A); 
-
-			var id = A.AssessmentId;
+			DB.Init();
+			DB._db.Insert(OA);
 		}
 
-		public static string GetAssessmentInfo(int id)
+		public static void AddPerfAssessment(int id, string name, string notes, DateTime due)
 		{
+
+			PerformanceAssessment PA = new PerformanceAssessment()
+			{
+				CourseId = id,
+				PerfAssessName = name,
+				PerfAssessNotes = notes,
+				DueDate = due
+		};
 			DB.Init();
-			var rowData = DB._db.Table<Assessment>().FirstOrDefault(i => i.CourseId == id);
+			DB._db.Insert(PA);
+		}
+
+		public static string GetObjAssessOutput(int id)
+		{
+			
+			DB.Init();
+			var rowData = DB._db.Table<ObjectiveAssessment>().FirstOrDefault(i => i.CourseId == id);
 
 			if (rowData != null)
 			{
-				return rowData.AssessmentName;
+				return rowData.ObjAssessOutput;
 			}
-			else { return "not found"; }
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+		}
+
+		public static string GetPerfAssessOutput(int id)
+		{
+
+			DB.Init();
+			var rowData = DB._db.Table<PerformanceAssessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.PerfAssessOutput;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
 		}
 	}
 }

@@ -31,7 +31,8 @@ namespace track_terms.Views
 			InstructorNameLabel.Text = HelperClass.GetInstructorName(teacherId);
 			InstructorPhoneLabel.Text = HelperClass.GetInstructorPhone(teacherId);
 			InstructorEmailLabel.Text = HelperClass.GetInstructorEmail(teacherId);
-			//PerformanceAssessmentLabel.Text = "Performance Assessment is " + HelperClass.GetAssessmentInfo(id).ToUpper();
+			ObjAssessmentLabel.Text = HelperClass.GetObjAssessOutput(id);
+			PerfAssessmentLabel.Text = HelperClass.GetPerfAssessOutput(id);
 		}
 
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
@@ -55,16 +56,15 @@ namespace track_terms.Views
 		{
 			Shell.Current.GoToAsync("HomePage");
 		}
-		
-		private void addAssessmentBtn_Clicked(object sender, EventArgs e)
-		{
-			Navigation.PushModalAsync(new AddAssessmentPage());
-		}
 
 		protected override void OnDisappearing()
 		{
 			base.OnDisappearing();
 		}
 
+		private void editAssessmentBtn_Clicked(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

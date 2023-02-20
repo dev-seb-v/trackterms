@@ -30,10 +30,12 @@
 				<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="objAssessmentDueDatePicker"/>
+				<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
 				<Label Text="Add Performance Assessment"/>
 				<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter performance assess name"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="perfAssessmentDueDatePicker"/>
+				<Entry x:Name="PerfNotesEntry" Placeholder="enter notes"/>
 
 				<Button x:Name="saveCourseBtn"
 					Text="Save"

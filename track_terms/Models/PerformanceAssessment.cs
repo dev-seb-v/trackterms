@@ -5,17 +5,27 @@ using SQLite;
 
 namespace track_terms.Models
 {
-	public class PerformanceAssessment : Assessment
+	public class PerformanceAssessment 
 	{
 		[PrimaryKey, AutoIncrement]
 		public int PerformanceId { get; set; }
 		public int CourseId { get; set; }
-
-		public PerformanceAssessment(int courseId, string name,  string notes)
+		public string PerfAssessName { get; set; }
+		public string PerfAssessNotes { get; set; }
+		public DateTime DueDate { get; set; }
+		public string PerfAssessOutput => $"{PerfAssessName} is due on {DueDate.ToShortDateString()}{Environment.NewLine}" +
+			$"{PerfAssessNotes}";
+		public PerformanceAssessment(int id, string name, string notes, DateTime due)
 		{
-			CourseId = courseId;
-			AssessmentName = name;
-			AssessmentNotes = notes;
+			CourseId = id;
+			PerfAssessName = name;
+			PerfAssessNotes = notes;
+			DueDate = due;
+		}
+
+		public PerformanceAssessment()
+		{
+
 		}
 	}
 }

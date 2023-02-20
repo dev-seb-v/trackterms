@@ -37,8 +37,10 @@ namespace track_terms.Views
 
 			var status = statusPicker.SelectedItem as Status;
 
-			// add course without assessment
-			DB.AddCourse( Int32.Parse(termIdEntry.Text), status.status,  titleEntry.Text, startPicker.Date, endPicker.Date, i.InstructorId);
+			HelperClass.AddObjAssessment(Int32.Parse(termIdEntry.Text), objAssessmentNameEntry.Text, ObjNotesEntry.Text, objAssessmentDueDatePicker.Date);
+			HelperClass.AddPerfAssessment(Int32.Parse(termIdEntry.Text), perfAssessmentNameEntry.Text, PerfNotesEntry.Text, perfAssessmentDueDatePicker.Date);
+			// add course
+			DB.AddCourse(Int32.Parse(termIdEntry.Text), status.status,  titleEntry.Text, startPicker.Date, endPicker.Date, i.InstructorId);
 
 			Shell.Current.GoToAsync("HomePage");
 		}

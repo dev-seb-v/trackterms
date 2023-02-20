@@ -23,19 +23,22 @@
 			<Label x:Name="InstructorNameLabel"	/>
 			<Label x:Name="InstructorPhoneLabel"/>
 			<Label x:Name="InstructorEmailLabel"/>
-			<Label Text="--------------------" FontAttributes="Bold"/>
-				<Label Text="Assessment Information"/>
-			
+				<Label Text="--------------------" FontAttributes="Bold"/>
+				<Label Text="Objective Assessment" FontAttributes="Bold"/>
+				<Label x:Name="ObjAssessmentLabel"/>
+				<Label Text="--------------------" FontAttributes="Bold"/>
+				<Label Text="Performance Assessment"/>
+				<Label x:Name="PerfAssessmentLabel"/>
 				<Label Text="------------------------------------------------------------------------" FontAttributes="Bold"/>
 			<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >
 				<Button Text="Cancel" Clicked="Button_Clicked" WidthRequest="80"/>
 				<Button Text="Edit Course" x:Name="EditCourseButton"
 						Clicked="EditCourseButton_Clicked"
 						WidthRequest="80"/>
-				<Button Text="Add Assessment" WidthRequest="100" FontSize="Micro"
-						x:Name="addAssessmentBtn"
-						Clicked="addAssessmentBtn_Clicked"/>
-				<Button Text="Delete Course" x:Name="DeleteCourseBtn"
+					<Button Text="Edit Assessments" WidthRequest="100" FontSize="Micro"
+						x:Name="editAssessmentBtn"
+							Clicked="editAssessmentBtn_Clicked"/>
+					<Button Text="Delete Course" x:Name="DeleteCourseBtn"
 						Clicked="DeleteCourseBtn_Clicked" WidthRequest="80"/>
 			</StackLayout>
 		</StackLayout>
