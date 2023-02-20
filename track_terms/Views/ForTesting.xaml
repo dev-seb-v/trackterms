@@ -7,10 +7,10 @@
 		
 			<StackLayout>
 				<Label x:Name="multiuseLabel"/>
-			
-				<Button Text="Clear Data" x:Name="clearData" Clicked="clearData_Clicked" HorizontalOptions="Center"/>
 				
-			</StackLayout>
+				<Button Text="Clear Data" x:Name="clearData" Clicked="clearData_Clicked" HorizontalOptions="Center"/>
+				<Button Text="Load Data" x:Name="loadDataButton" Clicked="loadDataButton_Clicked" HorizontalOptions="Center"/>
+		</StackLayout>
 			
 	</ContentPage.Content>
 	

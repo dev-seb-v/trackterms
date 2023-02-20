@@ -26,5 +26,11 @@ namespace track_terms.Views
 			DB.ClearData();
 			Shell.Current.GoToAsync("HomePage");
 		}
+
+		private void loadDataButton_Clicked(object sender, EventArgs e)
+		{
+			DB.LoadData();
+			Shell.Current.GoToAsync("HomePage");
+		}
 	}
 }

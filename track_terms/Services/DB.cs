@@ -94,6 +94,15 @@ namespace track_terms.Services
 		public static void LoadData()
 		{
 			Init();
+			Status s = new Status();
+			string status = "In Progress";
+			string startofTerm = "2023/01/01";
+			string endOfTerm = "2023/06/30";
+			DateTime start = Convert.ToDateTime(startofTerm);
+			DateTime end = Convert.ToDateTime(endOfTerm);
+			DB.AddInstructor("Sebastian Valenzuela", "909-316-99548", "svale59@wgu.edu");
+			DB.AddTerm("Spring 2023", start, end);
+			DB.AddCourse(1, status, "History of Ornamental Hedges", start, end, 1);
 		}
 
 		public static void ClearData()

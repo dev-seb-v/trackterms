@@ -35,7 +35,9 @@ namespace track_terms.Views
 			InstructorEmailLabel.Text = HelperClass.GetInstructorEmail(teacherId);
 			ObjAssessmentLabel.Text = HelperClass.GetObjAssessOutput(id);
 			PerfAssessmentLabel.Text = HelperClass.GetPerfAssessOutput(id);
-			
+			string perfText = PerfAssessmentLabel.Text;
+			string objText = ObjAssessmentLabel.Text;
+			CrossLocalNotifications.Current.Show("Assessments", $"{perfText}{objText}", 101, DateTime.Now.AddSeconds(5));
 		}
 
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
