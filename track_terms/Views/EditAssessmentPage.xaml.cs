@@ -20,6 +20,7 @@ namespace track_terms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+			
 		}
 		private void CancelButton_Clicked(object sender, EventArgs e)
 		{

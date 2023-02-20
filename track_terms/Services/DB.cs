@@ -98,11 +98,15 @@ namespace track_terms.Services
 			string status = "In Progress";
 			string startofTerm = "2023/01/01";
 			string endOfTerm = "2023/06/30";
+			string dueDate = "2023/04/15";
 			DateTime start = Convert.ToDateTime(startofTerm);
 			DateTime end = Convert.ToDateTime(endOfTerm);
+			DateTime due = Convert.ToDateTime(dueDate);
 			DB.AddInstructor("Sebastian Valenzuela", "909-316-99548", "svale59@wgu.edu");
 			DB.AddTerm("Spring 2023", start, end);
 			DB.AddCourse(1, status, "History of Ornamental Hedges", start, end, 1);
+			HelperClass.AddObjAssessment(1, "Midterm Exam", "Study Chapter on Pruning", due);
+			HelperClass.AddPerfAssessment(1, "Prune a Hawthorn", "Study Chapter 11", due);
 		}
 
 		public static void ClearData()
