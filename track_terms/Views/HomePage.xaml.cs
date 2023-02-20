@@ -66,5 +66,9 @@ namespace track_terms.Views
 			Navigation.PushAsync(new CourseDetailPage());
 		}
 
+		private void HomeButton_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new HomePage());
+		}
 	}
 }

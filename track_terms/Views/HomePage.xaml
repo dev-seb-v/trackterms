@@ -22,6 +22,7 @@
 	</ContentPage.Resources>
 	<ContentPage.ToolbarItems>
 		<ToolbarItem  Text="Add Course" x:Name="GoToAddCourse" Clicked="GoToAddCourse_Clicked"/>
+		<ToolbarItem  Text="Home" x:Name="HomeButton" Clicked="HomeButton_Clicked"/>
 	</ContentPage.ToolbarItems>
 	
 	
@@ -36,7 +37,7 @@
 					/>
 			
 				<CollectionView x:Name="CourseView" SelectionMode="Single" 
-						EmptyView="Choose term to view courses! Refresh page if terms disappear."
+						EmptyView="Choose term to view courses! Press Home Button to Refresh Page"
 						HorizontalOptions="Start"
 						SelectionChanged="CourseView_SelectionChanged">
 					    

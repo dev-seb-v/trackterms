@@ -27,7 +27,7 @@
 				<Label Text="Objective Assessment" FontAttributes="Bold"/>
 				<Label x:Name="ObjAssessmentLabel"/>
 				<Label Text="--------------------" FontAttributes="Bold"/>
-				<Label Text="Performance Assessment"/>
+				<Label Text="Performance Assessment" FontAttributes="Bold"/>
 				<Label x:Name="PerfAssessmentLabel"/>
 				<Label Text="------------------------------------------------------------------------" FontAttributes="Bold"/>
 			<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >

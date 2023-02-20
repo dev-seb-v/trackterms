@@ -28,10 +28,7 @@
 					Text="Save"
 					Clicked="saveCourseBtn_Clicked"/>
 				</StackLayout>
-			
-			
-
-		</StackLayout>
+			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

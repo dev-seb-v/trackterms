@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using track_terms.Services;
+using Plugin.LocalNotifications;
+
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,6 +35,7 @@ namespace track_terms.Views
 			InstructorEmailLabel.Text = HelperClass.GetInstructorEmail(teacherId);
 			ObjAssessmentLabel.Text = HelperClass.GetObjAssessOutput(id);
 			PerfAssessmentLabel.Text = HelperClass.GetPerfAssessOutput(id);
+			
 		}
 
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
@@ -64,6 +67,7 @@ namespace track_terms.Views
 
 		private void editAssessmentBtn_Clicked(object sender, EventArgs e)
 		{
+			Navigation.PushModalAsync(new EditAssessmentPage());
 
 		}
 	}

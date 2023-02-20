@@ -242,5 +242,77 @@ namespace track_terms.Services
 				return "not found";
 			}
 		}
+
+		public static void SetObjAssessmentToEmpty(int id) 
+		{
+			DB.Init();
+
+			var Query = DB._db.Table<ObjectiveAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
+
+			DateTime date = new DateTime();
+			if (Query != null)
+			{
+				Query.ObjAssessName = "none";
+				Query.ObjAssessNotes = "none";
+				Query.DueDate = date;
+			}
+
+			DB._db.Update(Query);
+
+		}
+
+		public static void SetPerfAssessmentToEmpty(int id)
+		{
+			DB.Init();
+
+			var Query = DB._db.Table<PerformanceAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
+
+			DateTime date = new DateTime();
+			if (Query != null)
+			{
+				Query.PerfAssessName = "none";
+				Query.PerfAssessNotes = "none";
+				Query.DueDate = date;
+			}
+
+			DB._db.Update(Query);
+
+		}
+
+		public static void UpdateObjAssessment(int id, string name, string notes, DateTime due)
+		{
+			DB.Init();
+
+			var Query = DB._db.Table<ObjectiveAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
+
+
+			if (Query != null)
+			{
+				Query.ObjAssessName = name;
+				Query.ObjAssessNotes = notes;
+				Query.DueDate = due;
+			}
+
+			DB._db.Update(Query);
+
+		}
+
+		public static void UpdatePerfAssessment(int id, string name, string notes, DateTime due)
+		{
+			DB.Init();
+
+			var Query = DB._db.Table<PerformanceAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
+
+			
+			if (Query != null)
+			{
+				Query.PerfAssessName = name;
+				Query.PerfAssessNotes = notes;
+				Query.DueDate = due;
+			}
+
+			DB._db.Update(Query);
+
+		}
 	}
 }
