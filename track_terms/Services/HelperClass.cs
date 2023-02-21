@@ -302,8 +302,6 @@ namespace track_terms.Services
 			DB.Init();
 
 			var Query = DB._db.Table<PerformanceAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
-
-			
 			if (Query != null)
 			{
 				Query.PerfAssessName = name;

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using track_terms.Views;
+using track_terms.Models;
 
 namespace track_terms
 {

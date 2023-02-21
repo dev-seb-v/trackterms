@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="track_terms.Views.CourseDetailPage">
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Filter Course View" x:Name="filterViewBtn"
-					 Clicked="filterViewBtn_Clicked"/>
-	</ContentPage.ToolbarItems>
+             x:Class="track_terms.Views.FilterViewPage">
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout VerticalOptions="CenterAndExpand"
@@ -36,17 +32,6 @@
 					   x:Name="PAsectionLabel"/>
 				<Label x:Name="PerfAssessmentLabel"/>
 				<Label Text="------------------------------------------------------------------------" FontAttributes="Bold"/>
-				<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >
-					<Button Text="Cancel" Clicked="Button_Clicked" WidthRequest="80"/>
-					<Button Text="Edit Course" x:Name="EditCourseButton"
-						Clicked="EditCourseButton_Clicked"
-						WidthRequest="80"/>
-					<Button Text="Edit Assessments" WidthRequest="100" FontSize="Micro"
-						x:Name="editAssessmentBtn"
-							Clicked="editAssessmentBtn_Clicked"/>
-					<Button Text="Delete Course" x:Name="DeleteCourseBtn"
-						Clicked="DeleteCourseBtn_Clicked" WidthRequest="80"/>
-				</StackLayout>
 				<StackLayout Orientation="Vertical" x:Name="toggleMenu">
 					<Label Text="Toggle Course Name"/>
 					<Switch IsToggled="false" HorizontalOptions="Center"
@@ -87,5 +72,5 @@
 				</StackLayout>
 			</StackLayout>
 		</ScrollView>
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

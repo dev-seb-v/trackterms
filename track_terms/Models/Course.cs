@@ -24,6 +24,7 @@ namespace track_terms.Models
 		public string endOutput => $"Ends on {CourseEnd.ToShortDateString()}";
 		public string CourseOutput => $"{CourseName} {Status} {Environment.NewLine} {CourseStart} {CourseEnd}";
 
+
 		//generic constructor
 		public Course() { }
 
@@ -36,6 +37,7 @@ namespace track_terms.Models
 			CourseStart = start;
 			CourseEnd = end;
 			InstructorId = instruct_id;
+		
 		}
 		// course with assessment
 	}

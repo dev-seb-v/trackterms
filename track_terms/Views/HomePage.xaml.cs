@@ -68,7 +68,7 @@ namespace track_terms.Views
 
 		private void HomeButton_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new HomePage());
+			(Application.Current).MainPage = new AppShell();
 		}
 	}
 }

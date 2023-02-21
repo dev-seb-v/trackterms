@@ -30,6 +30,7 @@ namespace track_terms.Views
 		private void loadDataButton_Clicked(object sender, EventArgs e)
 		{
 			DB.LoadData();
+		
 			Shell.Current.GoToAsync("HomePage");
 		}
 	}

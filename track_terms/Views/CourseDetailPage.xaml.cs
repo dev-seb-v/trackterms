@@ -9,6 +9,8 @@ using Plugin.LocalNotifications;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using track_terms.Models;
+using SQLite;
 
 namespace track_terms.Views
 {
@@ -19,11 +21,21 @@ namespace track_terms.Views
 		{
 			InitializeComponent();
 		}
-
 		protected override void OnAppearing()
 		{
-			base.OnAppearing();
+			Bools B = DB.GetBool(1);
+			CourseNameLabel.IsVisible = B.Name;
+			nameSectionLabel.IsVisible = B.Name;
+			NameToggle.IsToggled = B.Name;
 
+			CourseStartLabel.IsVisible = B.CourseDates;
+			CourseEndLabel.IsVisible = B.CourseDates;
+			//DateToggle.IsToggled = B.CourseDates;
+
+
+
+			base.OnAppearing();
+			//toggleMenu.IsVisible = false;
 			int id = HomePage.courseId;
 			int teacherId = HelperClass.GetInstructorId(id);
 			CourseNameLabel.Text = HelperClass.returnCourseName(id);
@@ -39,6 +51,7 @@ namespace track_terms.Views
 			string objText = ObjAssessmentLabel.Text;
 			CrossLocalNotifications.Current.Show("Assessments", $"{perfText}{objText}", 101, DateTime.Now.AddSeconds(5));
 		}
+
 
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
 		{
@@ -71,6 +84,74 @@ namespace track_terms.Views
 		{
 			Navigation.PushModalAsync(new EditAssessmentPage());
 
+		}
+		private void NameToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+			if (NameToggle.IsToggled == false)
+			{
+				DB.UpdateNameBool(1, false);
+				Bools B = DB.GetBool(1);
+				CourseNameLabel.IsVisible = B.Name;
+				nameSectionLabel.IsVisible = B.Name;
+				return;
+			}
+			if (NameToggle.IsToggled == true)
+			{
+				DB.UpdateNameBool(1, true);
+				Bools B = DB.GetBool(1);
+				CourseNameLabel.IsVisible = B.Name;
+				nameSectionLabel.IsVisible = B.Name;
+				return;
+			}
+		}
+
+		private void DateToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+
+			
+			//CourseStartLabel.IsVisible = IcanSeeTheDates;
+			//CourseEndLabel.IsVisible = IcanSeeTheDates;
+		}
+
+		private void CourseStatusToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+
+		}
+
+		private void InstructorToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+
+
+			//InstructorNameLabel.IsVisible = IcanSeeTheTeacher;
+			//InstructorEmailLabel.IsVisible = IcanSeeTheTeacher;
+			//InstructorPhoneLabel.IsVisible = IcanSeeTheTeacher;
+			//InstructorSectionLabel.IsVisible = IcanSeeTheTeacher;
+		}
+
+		private void OAToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+
+
+			//ObjAssessmentLabel.IsVisible = IcanSeeTheOA;
+			//OAsectionLabel.IsVisible = IcanSeeTheOA;
+		}
+
+		private void PAToggle_Toggled(object sender, ToggledEventArgs e)
+		{
+
+
+			//PerfAssessmentLabel.IsVisible = IcanSeeThePA;
+			//PAsectionLabel.IsVisible = IcanSeeThePA;
+		}
+
+		private void filterViewBtn_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushModalAsync(new FilterViewPage());
+		}
+
+		private void SaveViewButton_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new CourseDetailPage());
 		}
 	}
 }

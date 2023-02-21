@@ -32,6 +32,7 @@ namespace track_terms.Services
 			_db.CreateTable<Instructor>();
 			_db.CreateTable<PerformanceAssessment>();
 			_db.CreateTable<ObjectiveAssessment>();
+			_db.CreateTable<Bools>();
 		}
 
 		#region Terms methods
@@ -94,6 +95,7 @@ namespace track_terms.Services
 		public static void LoadData()
 		{
 			Init();
+			AddBool();
 			Status s = new Status();
 			string status = "In Progress";
 			string startofTerm = "2023/01/01";
@@ -118,6 +120,7 @@ namespace track_terms.Services
 			_db.DropTable<Instructor>();
 			_db.DropTable<ObjectiveAssessment>();
 			_db.DropTable<PerformanceAssessment>();
+			_db.DropTable<Bools>();
 
 			_db = null;
 			_dbConnection = null;
@@ -247,5 +250,112 @@ namespace track_terms.Services
 		}
 
 		#endregion
+		public static void AddBool()
+		{
+			Bools B = new Bools(true, true, true, true, true, true);
+			DB.Init();
+			DB._db.Insert(B);
+		}
+
+		public static void UpdateNameBool (int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.Name = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static void UpdateDatesBool(int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.CourseDates = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static void UpdateStatusBool(int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.CourseStatus = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static void UpdateInstructorBool(int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.Instruct = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static void UpdateOABool(int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.OA = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static void UpdatePABool(int id, bool change)
+		{
+			Init();
+
+			var Query = _db.Table<Bools>().Where(i => i.BoolId == id).FirstOrDefault();
+
+			if (Query != null)
+			{
+				Query.PA = change;
+			}
+
+			_db.Update(Query);
+		}
+
+		public static Bools GetBool(int id)
+		{
+
+			DB.Init();
+			Bools b = DB._db.Table<Bools>().FirstOrDefault(i => i.BoolId == id);
+
+			if (b != null)
+			{
+				return b;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return null;
+			}
+		}
 	}
 }
