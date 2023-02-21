@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="track_terms.Views.CourseDetailPage">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Filter Course View" x:Name="filterViewBtn"
+		<ToolbarItem Text="Show Filter Options" x:Name="filterViewBtn"
 					 Clicked="filterViewBtn_Clicked"/>
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>

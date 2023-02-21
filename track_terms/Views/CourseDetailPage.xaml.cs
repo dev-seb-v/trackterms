@@ -23,6 +23,9 @@ namespace track_terms.Views
 		}
 		protected override void OnAppearing()
 		{
+
+			toggleMenu.IsVisible = false;
+
 			Bools B = DB.GetBool(1);
 			CourseNameLabel.IsVisible = B.Name;
 			nameSectionLabel.IsVisible = B.Name;
@@ -30,9 +33,24 @@ namespace track_terms.Views
 
 			CourseStartLabel.IsVisible = B.CourseDates;
 			CourseEndLabel.IsVisible = B.CourseDates;
-			//DateToggle.IsToggled = B.CourseDates;
+			DateToggle.IsToggled = B.CourseDates;
 
+			CourseStatusLabel.IsVisible = B.CourseStatus;
+			statusSectionLabel.IsVisible = B.CourseStatus;
+			CourseStatusToggle.IsToggled = B.CourseStatus;
 
+			InstructorEmailLabel.IsVisible = B.Instruct;
+			InstructorNameLabel.IsVisible = B.Instruct;
+			InstructorPhoneLabel.IsVisible = B.Instruct;
+			InstructorToggle.IsToggled = B.Instruct;
+
+			OAsectionLabel.IsVisible = B.OA;
+			ObjAssessmentLabel.IsVisible = B.OA;
+			OAToggle.IsToggled = B.OA;
+
+			PAsectionLabel.IsVisible = B.PA;
+			PerfAssessmentLabel.IsVisible = B.PA;
+			PAToggle.IsToggled = B.PA;
 
 			base.OnAppearing();
 			//toggleMenu.IsVisible = false;
@@ -107,46 +125,111 @@ namespace track_terms.Views
 
 		private void DateToggle_Toggled(object sender, ToggledEventArgs e)
 		{
+			if (DateToggle.IsToggled == false)
+			{
+				DB.UpdateDatesBool(1, false);
+				Bools B = DB.GetBool(1);
+				CourseStartLabel.IsVisible = B.Name;
+				CourseEndLabel.IsVisible = B.Name;
+				return;
+			}
+			if (DateToggle.IsToggled == true)
+			{
+				DB.UpdateDatesBool(1, true);
+				Bools B = DB.GetBool(1);
+				CourseStartLabel.IsVisible = B.Name;
+				CourseEndLabel.IsVisible = B.Name;
 
-			
-			//CourseStartLabel.IsVisible = IcanSeeTheDates;
-			//CourseEndLabel.IsVisible = IcanSeeTheDates;
+				return;
+			}
 		}
 
 		private void CourseStatusToggle_Toggled(object sender, ToggledEventArgs e)
 		{
-
+			if (CourseStatusToggle.IsToggled == false)
+			{
+				DB.UpdateStatusBool(1, false);
+				Bools B = DB.GetBool(1);
+				statusSectionLabel.IsVisible = B.CourseStatus;
+				CourseStatusLabel.IsVisible = B.CourseStatus;
+				return;
+			}
+			if (CourseStatusToggle.IsToggled == true)
+			{
+				DB.UpdateStatusBool(1, true);
+				Bools B = DB.GetBool(1);
+				statusSectionLabel.IsVisible = B.CourseStatus;
+				CourseStatusLabel.IsVisible = B.CourseStatus;
+				return;
+			}
 		}
 
 		private void InstructorToggle_Toggled(object sender, ToggledEventArgs e)
 		{
-
-
-			//InstructorNameLabel.IsVisible = IcanSeeTheTeacher;
-			//InstructorEmailLabel.IsVisible = IcanSeeTheTeacher;
-			//InstructorPhoneLabel.IsVisible = IcanSeeTheTeacher;
-			//InstructorSectionLabel.IsVisible = IcanSeeTheTeacher;
+			if (InstructorToggle.IsToggled == false)
+			{
+				DB.UpdateInstructorBool(1, false);
+				Bools B = DB.GetBool(1);
+				InstructorEmailLabel.IsVisible = B.Instruct;
+				InstructorNameLabel.IsVisible = B.Instruct;
+				InstructorPhoneLabel.IsVisible = B.Instruct;
+				return;
+			}
+			if (CourseStatusToggle.IsToggled == true)
+			{
+				DB.UpdateInstructorBool(1, true);
+				Bools B = DB.GetBool(1);
+				InstructorEmailLabel.IsVisible = B.Instruct;
+				InstructorNameLabel.IsVisible = B.Instruct;
+				InstructorPhoneLabel.IsVisible = B.Instruct;
+				return;
+			}
 		}
 
 		private void OAToggle_Toggled(object sender, ToggledEventArgs e)
 		{
-
-
-			//ObjAssessmentLabel.IsVisible = IcanSeeTheOA;
-			//OAsectionLabel.IsVisible = IcanSeeTheOA;
+			if (OAToggle.IsToggled == false)
+			{
+				DB.UpdateOABool(1, false);
+				Bools B = DB.GetBool(1);
+				OAsectionLabel.IsVisible = B.OA;
+				ObjAssessmentLabel.IsVisible = B.OA;
+				return;
+			}
+			if (CourseStatusToggle.IsToggled == true)
+			{
+				DB.UpdateOABool(1, true);
+				Bools B = DB.GetBool(1);
+				OAsectionLabel.IsVisible = B.OA;
+				ObjAssessmentLabel.IsVisible = B.OA;
+				return;
+			}
 		}
 
 		private void PAToggle_Toggled(object sender, ToggledEventArgs e)
 		{
-
-
-			//PerfAssessmentLabel.IsVisible = IcanSeeThePA;
-			//PAsectionLabel.IsVisible = IcanSeeThePA;
+			if (PAToggle.IsToggled == false)
+			{
+				DB.UpdatePABool(1, false);
+				Bools B = DB.GetBool(1);
+				PAsectionLabel.IsVisible = B.PA;
+				PerfAssessmentLabel.IsVisible = B.PA;
+				return;
+			}
+			if (PAToggle.IsToggled == true)
+			{
+				DB.UpdatePABool(1, true);
+				Bools B = DB.GetBool(1);
+				PAsectionLabel.IsVisible = B.PA;
+				PerfAssessmentLabel.IsVisible = B.PA;
+				return;
+			}
 		}
 
 		private void filterViewBtn_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushModalAsync(new FilterViewPage());
+			toggleMenu.IsVisible = true;
+			toggleMenu.Focus();
 		}
 
 		private void SaveViewButton_Clicked(object sender, EventArgs e)
