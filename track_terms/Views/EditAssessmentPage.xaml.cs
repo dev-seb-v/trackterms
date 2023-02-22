@@ -20,7 +20,7 @@ namespace track_terms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			
+
 		}
 		private void CancelButton_Clicked(object sender, EventArgs e)
 		{
@@ -41,7 +41,7 @@ namespace track_terms.Views
 
 		private void UpdateObjAssessmentButton_Clicked(object sender, EventArgs e)
 		{
-			
+
 			if (string.IsNullOrEmpty(objAssessmentNameEntry.Text))
 			{
 				DisplayAlert("Invalid Assessment Name", "Please Enter a Name", "Ok");

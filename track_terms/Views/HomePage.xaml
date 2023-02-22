@@ -24,42 +24,35 @@
 		<ToolbarItem  Text="Add Course" x:Name="GoToAddCourse" Clicked="GoToAddCourse_Clicked"/>
 		<ToolbarItem  Text="Home" x:Name="HomeButton" Clicked="HomeButton_Clicked"/>
 	</ContentPage.ToolbarItems>
-	
-	
-	
 	<ContentPage.Content>
-		<RefreshView  x:Name="refreshCollectView" IsRefreshing="false">
-			<StackLayout HorizontalOptions="CenterAndExpand">
+		<StackLayout HorizontalOptions="CenterAndExpand">
 			<Picker x:Name="termPicker" HorizontalOptions="Center" Title="choose a term to view" 
 					ItemsSource="{Binding Term}"
 					ItemDisplayBinding="{Binding TermName}"
 					SelectedIndexChanged="termPicker_SelectedIndexChanged"
 					/>
-			
-				<CollectionView x:Name="CourseView" SelectionMode="Single" 
+			<CollectionView x:Name="CourseView" SelectionMode="Single" 
 						EmptyView="Choose term to view courses! Press Home Button to Refresh Page"
 						HorizontalOptions="Start"
 						SelectionChanged="CourseView_SelectionChanged">
-					    
-					<CollectionView.ItemTemplate>
-						<DataTemplate>
-							<Grid Margin="20" BackgroundColor="White">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Grid Margin="20" BackgroundColor="White">
 
-								<Label   Grid.Row="1" 
+							<Label   Grid.Row="1" 
 										Text= "{Binding CourseName}"
 											HorizontalTextAlignment="Center"
-												FontAttributes="Bold"/> 
-								<Label   Grid.Row="2" 
+												FontAttributes="Bold"/>
+							<Label   Grid.Row="2" 
 										Text= "{Binding CourseStart, StringFormat='{0:MMMM dd, yyyy}'}"
 											HorizontalTextAlignment="Center"/>
-								<Label   Grid.Row="3" 
+							<Label   Grid.Row="3" 
 										Text= "{Binding CourseEnd,  StringFormat='{0:MMMM dd, yyyy}'}"
 										HorizontalTextAlignment="Center"/>
-							</Grid>
-						</DataTemplate>
-					</CollectionView.ItemTemplate>
-				</CollectionView>
-			</StackLayout>
-		</RefreshView> 
+						</Grid>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -22,20 +22,20 @@
 			<DatePicker x:Name="endPicker"/>
 			<Label Text="Instructor Name"/>
 			<Entry x:Name="instructorEntry"/>
-			<Label Text="Instructor Email"/>
-			<Entry x:Name="InstructorEmailEntry"/>
+				<Label Text="Instructor Email"/>
+				<Entry x:Name="InstructorEmailEntry"/>
 			<Label Text="Instructor Phone #"/>
-			<Entry x:Name="InstructorPhone"/>
+				<Entry x:Name="InstructorPhone"/>
 				<Label Text="Add Objective Assessment"/>
-				<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
+				<Entry x:Name="objAssessmentNameEntry" Placeholder="Enter Assessment Name (optional)"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="objAssessmentDueDatePicker"/>
-				<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
+				<Entry x:Name="ObjNotesEntry" Placeholder="enter notes(Optional)"/>
 				<Label Text="Add Performance Assessment"/>
-				<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter performance assess name"/>
+				<Entry x:Name="perfAssessmentNameEntry" Placeholder="Enter Assessment Name (optional)"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="perfAssessmentDueDatePicker"/>
-				<Entry x:Name="PerfNotesEntry" Placeholder="enter notes"/>
+				<Entry x:Name="PerfNotesEntry" Placeholder="enter notes(Optional)"/>
 
 				<Button x:Name="saveCourseBtn"
 					Text="Save"

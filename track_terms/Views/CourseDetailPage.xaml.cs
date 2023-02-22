@@ -23,7 +23,6 @@ namespace track_terms.Views
 		}
 		protected override void OnAppearing()
 		{
-
 			toggleMenu.IsVisible = false;
 
 			Bools B = DB.GetBool(1);
@@ -69,13 +68,10 @@ namespace track_terms.Views
 			string objText = ObjAssessmentLabel.Text;
 			CrossLocalNotifications.Current.Show("Assessments", $"{perfText}{objText}", 101, DateTime.Now.AddSeconds(5));
 		}
-
-
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
 		{
 			Navigation.PushModalAsync(new UpdateCourse());
 		}
-
 		private async void DeleteCourseBtn_Clicked(object sender, EventArgs e)
 		{
 			var answer = await DisplayAlert("Delete Course", "Do you want to delete the course", "Yes", "No");
@@ -87,21 +83,17 @@ namespace track_terms.Views
 			}
 			else { return; }
 		}
-
 		private void Button_Clicked(object sender, EventArgs e)
 		{
 			Shell.Current.GoToAsync("HomePage");
 		}
-
 		protected override void OnDisappearing()
 		{
 			base.OnDisappearing();
 		}
-
 		private void editAssessmentBtn_Clicked(object sender, EventArgs e)
 		{
 			Navigation.PushModalAsync(new EditAssessmentPage());
-
 		}
 		private void NameToggle_Toggled(object sender, ToggledEventArgs e)
 		{
@@ -143,7 +135,6 @@ namespace track_terms.Views
 				return;
 			}
 		}
-
 		private void CourseStatusToggle_Toggled(object sender, ToggledEventArgs e)
 		{
 			if (CourseStatusToggle.IsToggled == false)
@@ -163,7 +154,6 @@ namespace track_terms.Views
 				return;
 			}
 		}
-
 		private void InstructorToggle_Toggled(object sender, ToggledEventArgs e)
 		{
 			if (InstructorToggle.IsToggled == false)
@@ -185,7 +175,6 @@ namespace track_terms.Views
 				return;
 			}
 		}
-
 		private void OAToggle_Toggled(object sender, ToggledEventArgs e)
 		{
 			if (OAToggle.IsToggled == false)
@@ -205,7 +194,6 @@ namespace track_terms.Views
 				return;
 			}
 		}
-
 		private void PAToggle_Toggled(object sender, ToggledEventArgs e)
 		{
 			if (PAToggle.IsToggled == false)
@@ -225,16 +213,14 @@ namespace track_terms.Views
 				return;
 			}
 		}
-
 		private void filterViewBtn_Clicked(object sender, EventArgs e)
 		{
 			toggleMenu.IsVisible = true;
-			toggleMenu.Focus();
 		}
-
 		private void SaveViewButton_Clicked(object sender, EventArgs e)
 		{
 			Navigation.PushAsync(new CourseDetailPage());
 		}
+
 	}
 }

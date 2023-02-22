@@ -83,7 +83,8 @@
 							Toggled="PAToggle_Toggled"
 							/>
 					<Button x:Name="SaveViewButton" Text="Save View"
-							Clicked="SaveViewButton_Clicked"/>
+							Clicked="SaveViewButton_Clicked"
+							/>
 				</StackLayout>
 			</StackLayout>
 		</ScrollView>

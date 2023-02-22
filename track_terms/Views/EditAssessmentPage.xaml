@@ -2,37 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="track_terms.Views.EditAssessmentPage">
-    <ContentPage.Content>
+	<ContentPage.Content>
 		<ScrollView>
-		<StackLayout>
-			<StackLayout Padding="10" Margin="10">
-			<Label Text="Objective Assessment" FontAttributes="Bold"/>
-			<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
-			<Label Text="Due Date"/>
-			<DatePicker x:Name="objAssessmentDueDatePicker"/>
-			<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
-				<Button Text="Delete Objective Assessment"
+			<StackLayout>
+				<StackLayout Padding="10" Margin="10">
+					<Label Text="Objective Assessment" FontAttributes="Bold"/>
+					<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
+					<Label Text="Due Date"/>
+					<DatePicker x:Name="objAssessmentDueDatePicker"/>
+					<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
+					<Button Text="Delete Objective Assessment"
 						x:Name="DeleteObjAssessmentButton"
 						Clicked="DeleteObjAssessmentButton_Clicked"/>
-				<Button Text="Update Objective Assessment"
+					<Button Text="Update Objective Assessment"
 						x:Name="UpdateObjAssessmentButton"
 						Clicked="UpdateObjAssessmentButton_Clicked"/>
-				<Label Text="Performance Assessment" FontAttributes="Bold"/>
-			<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter name"/>
-			<Label Text="Due Date"/>
-			<DatePicker x:Name="perfAssessmentDueDatePicker"/>
-			<Entry x:Name="PerfNotesEntry" Placeholder="enter notes"/>
-				<Button Text="Delete Performance Assessment" 
+					<Label Text="Performance Assessment" FontAttributes="Bold"/>
+					<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter name"/>
+					<Label Text="Due Date"/>
+					<DatePicker x:Name="perfAssessmentDueDatePicker"/>
+					<Entry x:Name="PerfNotesEntry" Placeholder="enter notes"/>
+					<Button Text="Delete Performance Assessment" 
 						x:Name="DeletePerfAssessmentButton"
 						Clicked="DeletePerfAssessmentButton_Clicked"/>
-				<Button Text="Update Performance Assessment"
+					<Button Text="Update Performance Assessment"
 						x:Name="UpdatePerfAssessmentButton"
 						Clicked="UpdatePerfAssessmentButton_Clicked"/>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Button Text="Cancel" x:Name="CancelButton" Clicked="CancelButton_Clicked"/>
+				</StackLayout>
 			</StackLayout>
-			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-				<Button Text="Cancel" x:Name="CancelButton" Clicked="CancelButton_Clicked"/>
-			</StackLayout>
-		</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

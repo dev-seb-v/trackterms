@@ -278,29 +278,21 @@ namespace track_terms.Services
 			DB._db.Update(Query);
 
 		}
-
 		public static void UpdateObjAssessment(int id, string name, string notes, DateTime due)
 		{
 			DB.Init();
-
 			var Query = DB._db.Table<ObjectiveAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
-
-
 			if (Query != null)
 			{
 				Query.ObjAssessName = name;
 				Query.ObjAssessNotes = notes;
 				Query.DueDate = due;
 			}
-
 			DB._db.Update(Query);
-
 		}
-
 		public static void UpdatePerfAssessment(int id, string name, string notes, DateTime due)
 		{
 			DB.Init();
-
 			var Query = DB._db.Table<PerformanceAssessment>().Where(i => i.CourseId == id).FirstOrDefault();
 			if (Query != null)
 			{
@@ -308,9 +300,98 @@ namespace track_terms.Services
 				Query.PerfAssessNotes = notes;
 				Query.DueDate = due;
 			}
-
 			DB._db.Update(Query);
+		}
+		public static string GetObjAssessName(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<ObjectiveAssessment>().FirstOrDefault(i => i.CourseId == id);
+			if (rowData != null)
+			{
+				return rowData.ObjAssessName;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+		}
 
+		public static DateTime GetObjAssessDate(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<ObjectiveAssessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.DueDate;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
+			}
+		}
+		public static string GetObjAssessNotes(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<ObjectiveAssessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.ObjAssessNotes;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+
+		}
+		public static string GetPerfAssessNotes(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<PerformanceAssessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.PerfAssessNotes;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+
+		}
+		public static DateTime GetPerfAssessDate(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<PerformanceAssessment>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.DueDate;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
+			}
+		}
+		public static string GetPerfAssessName(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<PerformanceAssessment>().FirstOrDefault(i => i.CourseId == id);
+			if (rowData != null)
+			{
+				return rowData.PerfAssessName;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
 		}
 	}
 }

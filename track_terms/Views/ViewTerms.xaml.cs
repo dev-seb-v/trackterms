@@ -53,10 +53,16 @@ namespace track_terms.Views
 			termId = (e.CurrentSelection.FirstOrDefault() as Term).TermId;
 			DeleteTermButton.IsEnabled = true;
 		}
-		private void DeleteTermButton_Clicked(object sender, EventArgs e)
+		private async void DeleteTermButton_Clicked(object sender, EventArgs e)
 		{
-			DB.RemoveTerm(termId);
-			Navigation.PushAsync(new HomePage());
+			var answer = await DisplayAlert("Delete Term", "Do you want to delete the term?", "Yes", "No");
+
+			if (answer)
+			{
+				DB.RemoveTerm(termId);
+				await Navigation.PushAsync(new ViewTerms());
+			}
+			else { return; }
 		}
 	}
 }
