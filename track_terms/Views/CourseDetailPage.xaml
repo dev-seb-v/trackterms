@@ -28,14 +28,28 @@
 				<Label x:Name="InstructorPhoneLabel"/>
 				<Label x:Name="InstructorEmailLabel"/>
 				<Label Text="--------------------" FontAttributes="Bold"/>
+				<StackLayout x:Name="OAstackLayout">
 				<Label Text="Objective Assessment" FontAttributes="Bold"
 					   x:Name="OAsectionLabel"/>
-				<Label x:Name="ObjAssessmentLabel"/>
+				<Label x:Name="ObjAssessmentNameLabel"/>
+				<Label x:Name="ObjAssessmentDateLabel"/>
+				<Label x:Name="ObjAssessmentNoteLabel"/>
+				</StackLayout>
+				
+				
 				<Label Text="--------------------" FontAttributes="Bold"/>
+				
+				
+				<StackLayout x:Name="PAstackLayout">
 				<Label Text="Performance Assessment" FontAttributes="Bold"
 					   x:Name="PAsectionLabel"/>
-				<Label x:Name="PerfAssessmentLabel"/>
+				<Label x:Name="PerfAssessmentNameLabel"/>
+				<Label x:Name="PerfAssessmentDateLabel"/>
+				<Label x:Name="PerfAssessmentNoteLabel"/>
+				</StackLayout>
+				
 				<Label Text="------------------------------------------------------------------------" FontAttributes="Bold"/>
+				
 				<StackLayout Orientation="Horizontal" Margin="0, 20, 0, 20" >
 					<Button Text="Cancel" Clicked="Button_Clicked" WidthRequest="80"/>
 					<Button Text="Edit Course" x:Name="EditCourseButton"
@@ -47,7 +61,10 @@
 					<Button Text="Delete Course" x:Name="DeleteCourseBtn"
 						Clicked="DeleteCourseBtn_Clicked" WidthRequest="80"/>
 				</StackLayout>
+				
+				<ScrollView x:Name="toggleScrollView" Margin="20">
 				<StackLayout Orientation="Vertical" x:Name="toggleMenu">
+					<Entry x:Name="pseudoEntry" IsVisible="false"/>
 					<Label Text="Toggle Course Name"/>
 					<Switch IsToggled="false" HorizontalOptions="Center"
 							x:Name="NameToggle"
@@ -85,7 +102,9 @@
 					<Button x:Name="SaveViewButton" Text="Save View"
 							Clicked="SaveViewButton_Clicked"
 							/>
-				</StackLayout>
+				
+						</StackLayout>
+				</ScrollView>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

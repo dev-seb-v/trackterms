@@ -1,16 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="track_terms.Views.ForTesting">
+             x:Class="track_terms.Views.ForTesting"
+			 Title="For App Tester">
 
 		<ContentPage.Content>
 		
+		<StackLayout HorizontalOptions="Center" VerticalOptions="Start" Margin="10">
+			<Label Text="Testing" FontSize="Large"/>
+			<Button Text="Clear Data" x:Name="clearData" Clicked="clearData_Clicked" HorizontalOptions="Center"/>
+			<Button Text="Load Data" x:Name="loadDataButton" Clicked="loadDataButton_Clicked" HorizontalOptions="Center"/>
+			<StackLayout Orientation="Horizontal">
+				<Button x:Name="AssessmentButton" Clicked="AssessmentButton_Clicked" Text="Get Assessment Info"/>
+			</StackLayout>
 			<StackLayout>
-				<Label x:Name="multiuseLabel"/>
-				
-				<Button Text="Clear Data" x:Name="clearData" Clicked="clearData_Clicked" HorizontalOptions="Center"/>
-				<Button Text="Load Data" x:Name="loadDataButton" Clicked="loadDataButton_Clicked" HorizontalOptions="Center"/>
+				<Editor x:Name="editor" Keyboard="Plain" AutoSize="TextChanges" MaxLength="180">
+					
+				</Editor>
+			</StackLayout>
 		</StackLayout>
+		
 			
 	</ContentPage.Content>
 	

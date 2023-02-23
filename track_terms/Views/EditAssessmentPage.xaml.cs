@@ -13,6 +13,11 @@ namespace track_terms.Views
 	public partial class EditAssessmentPage : ContentPage
 	{
 		public int id = HomePage.courseId;
+		public List<string> typeOfAssessments = new List<string>()
+		{ 
+			"Objective",
+			"Performance"
+		};
 		public EditAssessmentPage()
 		{
 			InitializeComponent();
@@ -20,7 +25,16 @@ namespace track_terms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+			AssessmentPicker.ItemsSource = typeOfAssessments;
+			AssessmentPicker.SelectedIndex = 0;
 
+			objAssessmentNameEntry.Text = HelperClass.GetObjAssessName(id);
+			objAssessmentDueDatePicker.Date = HelperClass.GetObjAssessDate(id);
+			ObjNotesEntry.Text = HelperClass.GetObjAssessNotes(id);
+
+			perfAssessmentNameEntry.Text = HelperClass.GetPerfAssessName(id);
+			perfAssessmentDueDatePicker.Date = HelperClass.GetPerfAssessDate(id);
+			PerfNotesEntry.Text = HelperClass.GetPerfAssessNotes(id);
 		}
 		private void CancelButton_Clicked(object sender, EventArgs e)
 		{
@@ -41,7 +55,6 @@ namespace track_terms.Views
 
 		private void UpdateObjAssessmentButton_Clicked(object sender, EventArgs e)
 		{
-
 			if (string.IsNullOrEmpty(objAssessmentNameEntry.Text))
 			{
 				DisplayAlert("Invalid Assessment Name", "Please Enter a Name", "Ok");
@@ -72,6 +85,7 @@ namespace track_terms.Views
 						);
 				Navigation.PopModalAsync();
 			}
+
 		}
 
 		private void UpdatePerfAssessmentButton_Clicked(object sender, EventArgs e)
@@ -88,13 +102,7 @@ namespace track_terms.Views
 			}
 			if (string.IsNullOrEmpty(PerfNotesEntry.Text))
 			{
-				HelperClass.UpdatePerfAssessment(
-					id,
-					perfAssessmentNameEntry.Text,
-					"none",
-					perfAssessmentDueDatePicker.Date
-					);
-				Navigation.PopModalAsync();
+				PerfNotesEntry.Text = "add notes";
 			}
 			else
 			{
@@ -105,6 +113,20 @@ namespace track_terms.Views
 					perfAssessmentDueDatePicker.Date
 						);
 				Navigation.PopModalAsync();
+			}
+		}
+
+		private void AssessmentPicker_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (AssessmentPicker.SelectedIndex == 0)
+			{
+				OAstackLayout.IsVisible = true;
+				PAstackLayout.IsVisible = false;
+			}
+			if (AssessmentPicker.SelectedIndex == 1)
+			{
+				PAstackLayout.IsVisible = true;
+				OAstackLayout.IsVisible = false;
 			}
 		}
 	}

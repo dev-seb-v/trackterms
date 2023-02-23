@@ -181,6 +181,23 @@ namespace track_terms.Services
 			DB._db.Update(CourseQuery);
 
 		}
+
+		public static int GetCourseId(string CourseName)
+		{ 
+			DB.Init();
+			// passing in an object of type Course and the Course Name 
+			var query = DB._db.Query<Course>("select CourseId from Course where CourseName = ?", CourseName);
+
+			if (query != null)
+			{
+				// return the courseid
+				return query[0].CourseId;
+			}
+			else
+			{
+				return -999;
+			}
+		}
 		public static void AddObjAssessment(int id, string name, string notes, DateTime due)
 		{
 
@@ -225,7 +242,7 @@ namespace track_terms.Services
 				return "not found";
 			}
 		}
-
+		
 		public static string GetPerfAssessOutput(int id)
 		{
 
@@ -391,6 +408,49 @@ namespace track_terms.Services
 			{
 				// will return generic date if not found in table
 				return "not found";
+			}
+		}
+
+		public static string GetTermName(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermName;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+		}
+		public static DateTime GetTermStart(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermStart;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
+			}
+		}
+		public static DateTime GetTermEnd(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermEnd;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
 			}
 		}
 	}

@@ -18,20 +18,23 @@ namespace track_terms.Views
 		public ForTesting()
 		{
 			InitializeComponent();
-			multiuseLabel.Text = String.Join(" ", Miscellaneous2.ReturnCourseItems());
 		}
 
 		private void clearData_Clicked(object sender, EventArgs e)
 		{
 			DB.ClearData();
-			Shell.Current.GoToAsync("HomePage");
+			(Application.Current).MainPage = new AppShell();
 		}
 
 		private void loadDataButton_Clicked(object sender, EventArgs e)
 		{
 			DB.LoadData();
-		
-			Shell.Current.GoToAsync("HomePage");
+			(Application.Current).MainPage = new AppShell();
+		}
+
+		private void AssessmentButton_Clicked(object sender, EventArgs e)
+		{
+			editor.Text = HelperClass.GetObjAssessOutput(1);
 		}
 	}
 }

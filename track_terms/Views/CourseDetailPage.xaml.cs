@@ -43,13 +43,15 @@ namespace track_terms.Views
 			InstructorPhoneLabel.IsVisible = B.Instruct;
 			InstructorToggle.IsToggled = B.Instruct;
 
-			OAsectionLabel.IsVisible = B.OA;
-			ObjAssessmentLabel.IsVisible = B.OA;
+			//OAsectionLabel.IsVisible = B.OA;
+			//ObjAssessmentLabel.IsVisible = B.OA;
 			OAToggle.IsToggled = B.OA;
+			OAstackLayout.IsVisible = B.OA;
 
-			PAsectionLabel.IsVisible = B.PA;
-			PerfAssessmentLabel.IsVisible = B.PA;
+			//PAsectionLabel.IsVisible = B.PA;
+			//PerfAssessmentLabel.IsVisible = B.PA;
 			PAToggle.IsToggled = B.PA;
+			PAstackLayout.IsVisible = B.PA;
 
 			base.OnAppearing();
 			//toggleMenu.IsVisible = false;
@@ -62,10 +64,14 @@ namespace track_terms.Views
 			InstructorNameLabel.Text = HelperClass.GetInstructorName(teacherId);
 			InstructorPhoneLabel.Text = HelperClass.GetInstructorPhone(teacherId);
 			InstructorEmailLabel.Text = HelperClass.GetInstructorEmail(teacherId);
-			ObjAssessmentLabel.Text = HelperClass.GetObjAssessOutput(id);
-			PerfAssessmentLabel.Text = HelperClass.GetPerfAssessOutput(id);
-			string perfText = PerfAssessmentLabel.Text;
-			string objText = ObjAssessmentLabel.Text;
+			ObjAssessmentNameLabel.Text = HelperClass.GetObjAssessName(id);
+			ObjAssessmentDateLabel.Text = HelperClass.GetObjAssessDate(id).ToString();
+			ObjAssessmentNoteLabel.Text = HelperClass.GetObjAssessNotes(id);
+			PerfAssessmentNameLabel.Text = HelperClass.GetPerfAssessName(id);
+			PerfAssessmentDateLabel.Text = HelperClass.GetPerfAssessDate(id).ToString();
+			PerfAssessmentNoteLabel.Text = HelperClass.GetPerfAssessNotes(id);
+			string perfText = PerfAssessmentNameLabel.Text;
+			string objText = ObjAssessmentNameLabel.Text;
 			CrossLocalNotifications.Current.Show("Assessments", $"{perfText}{objText}", 101, DateTime.Now.AddSeconds(5));
 		}
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
@@ -182,7 +188,8 @@ namespace track_terms.Views
 				DB.UpdateOABool(1, false);
 				Bools B = DB.GetBool(1);
 				OAsectionLabel.IsVisible = B.OA;
-				ObjAssessmentLabel.IsVisible = B.OA;
+				//ObjAssessmentLabel.IsVisible = B.OA;
+				OAstackLayout.IsVisible = B.OA;
 				return;
 			}
 			if (CourseStatusToggle.IsToggled == true)
@@ -190,7 +197,8 @@ namespace track_terms.Views
 				DB.UpdateOABool(1, true);
 				Bools B = DB.GetBool(1);
 				OAsectionLabel.IsVisible = B.OA;
-				ObjAssessmentLabel.IsVisible = B.OA;
+				//ObjAssessmentLabel.IsVisible = B.OA;
+				PAstackLayout.IsVisible = B.OA;
 				return;
 			}
 		}
@@ -200,22 +208,25 @@ namespace track_terms.Views
 			{
 				DB.UpdatePABool(1, false);
 				Bools B = DB.GetBool(1);
-				PAsectionLabel.IsVisible = B.PA;
-				PerfAssessmentLabel.IsVisible = B.PA;
+				//PAsectionLabel.IsVisible = B.PA;
+				//PerfAssessmentLabel.IsVisible = B.PA;
+				PAstackLayout.IsVisible = B.PA;
 				return;
 			}
 			if (PAToggle.IsToggled == true)
 			{
 				DB.UpdatePABool(1, true);
 				Bools B = DB.GetBool(1);
-				PAsectionLabel.IsVisible = B.PA;
-				PerfAssessmentLabel.IsVisible = B.PA;
+				//PAsectionLabel.IsVisible = B.PA;
+				//PerfAssessmentLabel.IsVisible = B.PA;
+				PAstackLayout.IsVisible = B.PA;
 				return;
 			}
 		}
 		private void filterViewBtn_Clicked(object sender, EventArgs e)
 		{
 			toggleMenu.IsVisible = true;
+			DisplayAlert("Filters", "Scroll to Bottom", "Ok");
 		}
 		private void SaveViewButton_Clicked(object sender, EventArgs e)
 		{

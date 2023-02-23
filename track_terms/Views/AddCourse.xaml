@@ -26,17 +26,27 @@
 				<Entry x:Name="InstructorEmailEntry"/>
 			<Label Text="Instructor Phone #"/>
 				<Entry x:Name="InstructorPhone"/>
+
+				<Label Text="Would you like to add an objective assessment?"/>
+				<Switch x:Name="OAtoggle" IsToggled="False" Toggled="OAtoggle_Toggled"/>
+				<StackLayout x:Name="OAstackLayout">
 				<Label Text="Add Objective Assessment"/>
 				<Entry x:Name="objAssessmentNameEntry" Placeholder="Enter Assessment Name (optional)"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="objAssessmentDueDatePicker"/>
 				<Entry x:Name="ObjNotesEntry" Placeholder="enter notes(Optional)"/>
+				</StackLayout>
+
+				<Label Text="Would you like to add a performance assessment?"/>
+				<Switch x:Name="PAtoggle" IsToggled="False" Toggled="PAtoggle_Toggled"/>
+				<StackLayout x:Name="PAstackLayout">
 				<Label Text="Add Performance Assessment"/>
 				<Entry x:Name="perfAssessmentNameEntry" Placeholder="Enter Assessment Name (optional)"/>
 				<Label Text="Due Date"/>
 				<DatePicker x:Name="perfAssessmentDueDatePicker"/>
 				<Entry x:Name="PerfNotesEntry" Placeholder="enter notes(Optional)"/>
-
+				</StackLayout>
+			
 				<Button x:Name="saveCourseBtn"
 					Text="Save"
 					Clicked="saveCourseBtn_Clicked"/>

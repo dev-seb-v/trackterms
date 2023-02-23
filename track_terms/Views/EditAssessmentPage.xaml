@@ -4,31 +4,42 @@
              x:Class="track_terms.Views.EditAssessmentPage">
 	<ContentPage.Content>
 		<ScrollView>
+			<StackLayout Margin="20" Padding="10">
 			<StackLayout>
-				<StackLayout Padding="10" Margin="10">
-					<Label Text="Objective Assessment" FontAttributes="Bold"/>
-					<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
-					<Label Text="Due Date"/>
-					<DatePicker x:Name="objAssessmentDueDatePicker"/>
-					<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
-					<Button Text="Delete Objective Assessment"
-						x:Name="DeleteObjAssessmentButton"
-						Clicked="DeleteObjAssessmentButton_Clicked"/>
-					<Button Text="Update Objective Assessment"
-						x:Name="UpdateObjAssessmentButton"
-						Clicked="UpdateObjAssessmentButton_Clicked"/>
+					<Label Text="Please Choose an Assessment to Edit" FontAttributes="Bold"/>
+					<Picker x:Name="AssessmentPicker" Title="Choose Assessment to Edit"
+						SelectedIndexChanged="AssessmentPicker_SelectedIndexChanged" FontAttributes="Bold"/>
+			</StackLayout>
+			<!--Objective assessment section-->
+					<StackLayout Padding="10" Margin="10" x:Name="OAstackLayout">
+						<Label Text="Objective Assessment" FontAttributes="Bold"/>
+						<Entry x:Name="objAssessmentNameEntry" Placeholder="enter obj assessment name"/>
+						<Label Text="Due Date"/>
+						<DatePicker x:Name="objAssessmentDueDatePicker"/>
+						<Entry x:Name="ObjNotesEntry" Placeholder="enter notes"/>
+						<Button Text="Delete"
+									x:Name="DeleteObjAssessmentButton"
+									Clicked="DeleteObjAssessmentButton_Clicked"/>
+						<Button Text="Update"
+									x:Name="UpdateObjAssessmentButton"
+									Clicked="UpdateObjAssessmentButton_Clicked"/>
+					</StackLayout>
+				<StackLayout x:Name="PAstackLayout" Margin="20" Padding="10">
+					<!--Performance assessment section-->
 					<Label Text="Performance Assessment" FontAttributes="Bold"/>
 					<Entry x:Name="perfAssessmentNameEntry" Placeholder="enter name"/>
 					<Label Text="Due Date"/>
 					<DatePicker x:Name="perfAssessmentDueDatePicker"/>
 					<Entry x:Name="PerfNotesEntry" Placeholder="enter notes"/>
-					<Button Text="Delete Performance Assessment" 
-						x:Name="DeletePerfAssessmentButton"
-						Clicked="DeletePerfAssessmentButton_Clicked"/>
-					<Button Text="Update Performance Assessment"
-						x:Name="UpdatePerfAssessmentButton"
-						Clicked="UpdatePerfAssessmentButton_Clicked"/>
+					<Button Text="Delete" 
+							x:Name="DeletePerfAssessmentButton"
+							Clicked="DeletePerfAssessmentButton_Clicked"/>
+					<Button Text="Update"
+							x:Name="UpdatePerfAssessmentButton"
+							Clicked="UpdatePerfAssessmentButton_Clicked"/>
 				</StackLayout>
+
+				<!--Cancel Button-->
 				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 					<Button Text="Cancel" x:Name="CancelButton" Clicked="CancelButton_Clicked"/>
 				</StackLayout>

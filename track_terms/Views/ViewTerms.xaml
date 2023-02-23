@@ -45,11 +45,12 @@
 					</DataTemplate>
 				</CollectionView.ItemTemplate>
 			</CollectionView>
-			<StackLayout Orientation="Horizontal" Margin="100, 10, 100, 10">
+			<StackLayout>
 				<Button Text="Cancel" x:Name="CancelButton"
 						Clicked="CancelButton_Clicked"/>
 				<Button Text="Delete" x:Name="DeleteTermButton"
 						Clicked="DeleteTermButton_Clicked"/>
+				<Button Text="Update" Clicked="updateButton_Clicked" x:Name="updateButton"/>
 			</StackLayout>
 		</StackLayout>
     </ContentPage.Content>

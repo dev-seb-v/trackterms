@@ -17,6 +17,8 @@ namespace track_terms.Models
 
 		public string ObjAssessOutput => $"{ObjAssessName} is due on {DueDate.ToShortDateString()}" +
 			$" {Environment.NewLine} {ObjAssessNotes} ";
+
+		public string genericOutput => "Add Assessment";
 		public ObjectiveAssessment(int id, string name, string notes, DateTime due)
 		{
 			CourseId = id;

@@ -25,6 +25,9 @@ namespace track_terms.Views
 
 			Status s = new Status();
 
+			OAstackLayout.IsVisible = false;
+			PAstackLayout.IsVisible = false;
+
 			statusPicker.ItemsSource = s.statuses;
 		}
 		private void saveCourseBtn_Clicked(object sender, EventArgs e)
@@ -72,13 +75,60 @@ namespace track_terms.Views
 
 			var status = statusPicker.SelectedItem as Status;
 
-			HelperClass.AddObjAssessment(Int32.Parse(termIdEntry.Text), objAssessmentNameEntry.Text, ObjNotesEntry.Text, objAssessmentDueDatePicker.Date);
-			HelperClass.AddPerfAssessment(Int32.Parse(termIdEntry.Text), perfAssessmentNameEntry.Text, PerfNotesEntry.Text, perfAssessmentDueDatePicker.Date);
 			// add course
 			DB.AddCourse(Int32.Parse(termIdEntry.Text), status.status, titleEntry.Text, startPicker.Date, endPicker.Date, i.InstructorId);
+			// need to use CourseId to Add Assessments (Bug Found!)
+			
+			if (OAtoggle.IsToggled)
+			{
+				// created a method to grab the course id using the course name
+				HelperClass.AddObjAssessment(HelperClass.GetCourseId(titleEntry.Text), objAssessmentNameEntry.Text, ObjNotesEntry.Text, objAssessmentDueDatePicker.Date);
+			}
+			if (!OAtoggle.IsToggled)
+			{
+				// created a method to grab the course id using the course name
+				HelperClass.AddObjAssessment(HelperClass.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
+			}
+			if (PAtoggle.IsToggled)
+			{
+				HelperClass.AddPerfAssessment(HelperClass.GetCourseId(titleEntry.Text), perfAssessmentNameEntry.Text, PerfNotesEntry.Text, perfAssessmentDueDatePicker.Date);
+			}
+			// If user does not add assessments manually, placeholder assessments will be added for the user to edit later
+			if (!PAtoggle.IsToggled)
+			{
+				// created a method to grab the course id using the course name
+				HelperClass.AddPerfAssessment(HelperClass.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
+			}
+
+
 
 			Shell.Current.GoToAsync("HomePage");
 		}
 
+		private void PAtoggle_Toggled(object sender, ToggledEventArgs e)
+		{
+			if (PAtoggle.IsToggled)
+			{
+				PAstackLayout.IsVisible = true;
+			}
+
+			if (!PAtoggle.IsToggled)
+			{
+				PAstackLayout.IsVisible = false;
+			}
+		}
+
+		private void OAtoggle_Toggled(object sender, ToggledEventArgs e)
+		{
+			if (OAtoggle.IsToggled)
+			{
+				OAstackLayout.IsVisible = true;
+			}
+
+			if (!OAtoggle.IsToggled)
+			{
+				OAstackLayout.IsVisible = false;
+			}
+		}
 	}
 }
