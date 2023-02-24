@@ -52,6 +52,11 @@ namespace track_terms.Views
 				DisplayAlert("End Date", "Please select an end date", "Ok");
 				return;
 			}
+			if (startPicker.Date > endPicker.Date)
+			{
+				DisplayAlert("Invalid Date", "The end of the course cannot be before the start", "Ok");
+				return;
+			}
 			if (string.IsNullOrEmpty(instructorEntry.Text))
 			{
 				DisplayAlert("Instructor Name", "Please enter a valid instructor name", "Ok");

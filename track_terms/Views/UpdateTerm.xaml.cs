@@ -36,6 +36,11 @@ namespace track_terms.Views
 				DisplayAlert("Term Name", "Please enter a name for term", "Ok");
 				return;
 			}
+			if (startDatePicker.Date > endDatePicker.Date)
+			{
+				DisplayAlert("Invalid Date", "The end of the term cannot be before the start", "Ok");
+				return;
+			}
 			else
 			{
 				DB.UpdateTerm(id, nameEntry.Text, startDatePicker.Date, endDatePicker.Date);

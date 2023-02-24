@@ -33,9 +33,16 @@ namespace track_terms.Views
 			    DisplayAlert("Missing Term Name", "Please enter a name", "OK");
 				return;
 			}
-
+			if(startPicker.Date > endPicker.Date)
+			{
+				DisplayAlert("Invalid Date", "The end of the term cannot be before the start", "Ok");
+				return;
+			}
+			else
+			{
 			DB.AddTerm(nameEntry.Text, startPicker.Date, endPicker.Date);
 			Shell.Current.GoToAsync("HomePage");
+			}
 		}
 	}
 }

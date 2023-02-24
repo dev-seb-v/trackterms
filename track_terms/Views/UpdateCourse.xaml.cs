@@ -42,6 +42,11 @@ namespace track_terms.Views
 				DisplayAlert("Missing Item", "Please check for missing item", "OK");
 				return;
 			}
+			if (StartPicker.Date > EndPicker.Date)
+			{
+				DisplayAlert("Invalid Date", "The end of the course cannot be before the start", "Ok");
+				return;
+			}
 			else 
 			{
 				var status = StatusPicker.SelectedItem as Status;

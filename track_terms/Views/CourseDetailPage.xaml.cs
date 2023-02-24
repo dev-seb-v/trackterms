@@ -70,9 +70,13 @@ namespace track_terms.Views
 			PerfAssessmentNameLabel.Text = HelperClass.GetPerfAssessName(id);
 			PerfAssessmentDateLabel.Text = HelperClass.GetPerfAssessDate(id).ToString();
 			PerfAssessmentNoteLabel.Text = HelperClass.GetPerfAssessNotes(id);
-			string perfText = PerfAssessmentNameLabel.Text;
-			string objText = ObjAssessmentNameLabel.Text;
-			CrossLocalNotifications.Current.Show("Assessments", $"{perfText}{objText}", 101, DateTime.Now.AddSeconds(5));
+			string start = HelperClass.returnStartOuput(id);
+			string end = HelperClass.returnEndOutput(id);
+			string OA = HelperClass.GetObjAssessOutput(id);
+			string PA = HelperClass.GetPerfAssessOutput(id);
+			List<string> messages = new List<string>() {start, end, OA, PA };
+			string masterMessage = String.Join(Environment.NewLine, messages);
+			CrossLocalNotifications.Current.Show("Course Alert", $"{masterMessage}", 101, DateTime.Now.AddSeconds(1));
 		}
 		private void EditCourseButton_Clicked(object sender, EventArgs e)
 		{
