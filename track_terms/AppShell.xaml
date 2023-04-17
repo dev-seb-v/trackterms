@@ -20,4 +20,7 @@
 	<FlyoutItem Title="Report">
 		<ShellContent  Route="ReportPage" ContentTemplate="{DataTemplate local:ReportPage}" />
 	</FlyoutItem>
+	<FlyoutItem Title="Search for Course">
+		<ShellContent  Route="SearchPage" ContentTemplate="{DataTemplate local:SearchPage}" />
+	</FlyoutItem>
 </Shell>

@@ -24,6 +24,18 @@ namespace track_terms.Services
 
 		}
 
+		public static string SearchForCourseName(int id, string course)
+		{
+			DB.Init();
+
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.TermId == id);
+				
+			if (rowData.CourseName == course)
+			{
+				return course;
+			}
+			else { return "Course not found"; }
+		}
 		public static string returnStartOuput(int id)
 		{
 			DB.Init();

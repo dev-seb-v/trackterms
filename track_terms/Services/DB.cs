@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using SQLite;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 using track_terms.Models;
 
@@ -401,5 +402,23 @@ namespace track_terms.Services
 			}
 			return count;
 		}
+
+		public static string GetCourseName(string name)
+		{
+			Init();
+			var query = _db.Query<Course>("select CourseName from Course where CourseName = ?", name);
+
+			if (query != null)
+			{
+				return query[0].CourseName.ToString() + "  Found!";
+			}
+			else
+			{
+				return "not found";
+
+			}
+				
+		}
+
 	}
 }

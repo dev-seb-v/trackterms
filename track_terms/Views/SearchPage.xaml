@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="track_terms.Views.SearchPage"
+			 >
+    <ContentPage.Content>
+        <StackLayout>
+			<Picker x:Name="termPicker"
+					ItemsSource="{Binding Term}"
+					ItemDisplayBinding="{Binding TermName}"
+					SelectedIndexChanged="termPicker_SelectedIndexChanged"
+					Title="Choose a Term To View"/>
+			<Label Text="Search for a Class" />
+			<Entry x:Name="courseNameEntry"
+				   Placeholder="enter course name"/>
+			<Button x:Name="searchBtn"
+					Text="Search"
+					Clicked="searchBtn_Clicked"/>
+			<Label x:Name="courseOutputLabel"
+					   />
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>

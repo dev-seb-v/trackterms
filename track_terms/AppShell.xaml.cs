@@ -18,6 +18,7 @@ namespace track_terms
 			Routing.RegisterRoute("HomePage/ForTesting", typeof(ForTesting));
 			Routing.RegisterRoute("HomePage/UpdateCourse", typeof(UpdateCourse));
 			Routing.RegisterRoute("HomePage/ReportPage", typeof(ReportPage));
+			Routing.RegisterRoute("HomePage/SearchPage", typeof(SearchPage));
 			Routing.RegisterRoute("AppShell/HomePage", typeof(AppShell));
 			Routing.RegisterRoute("HomePage/ViewTerms/UpdateTerm", typeof(UpdateTerm));
 		}
