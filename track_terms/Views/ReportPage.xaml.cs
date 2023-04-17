@@ -34,7 +34,7 @@ namespace track_terms.Views
 			term_id = t.TermId;
 			numClassesLabel.Text = DB.ReturnNumOfCourses(term_id).ToString();
 			numClassesCompleteLabel.Text = DB.ReturnNumOfCompleted(term_id).ToString();
-			daysLeftLabel.Text = (HelperClass.GetTermEnd(term_id) - DateTime.Today).TotalDays.ToString();
+			daysLeftLabel.Text = (DB.GetTermEnd(term_id) - DateTime.Today).TotalDays.ToString();
 			classesLeftLabel.Text = DB.ReturnNumOfInComplete(term_id).ToString();
 		}
 	}

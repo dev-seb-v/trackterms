@@ -27,6 +27,11 @@ namespace track_terms.Views
 			}
 		}
 
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			HomePage hp = new HomePage();
+		}
 		private void searchBtn_Clicked(object sender, EventArgs e)
 		{
 			if (courseNameEntry.Text == "")

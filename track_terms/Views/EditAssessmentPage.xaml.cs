@@ -28,13 +28,13 @@ namespace track_terms.Views
 			AssessmentPicker.ItemsSource = typeOfAssessments;
 			AssessmentPicker.SelectedIndex = 0;
 
-			objAssessmentNameEntry.Text = HelperClass.GetObjAssessName(id);
-			objAssessmentDueDatePicker.Date = HelperClass.GetObjAssessDate(id);
-			ObjNotesEntry.Text = HelperClass.GetObjAssessNotes(id);
+			objAssessmentNameEntry.Text = DB.GetObjAssessName(id);
+			objAssessmentDueDatePicker.Date = DB.GetObjAssessDate(id);
+			ObjNotesEntry.Text = DB.GetObjAssessNotes(id);
 
-			perfAssessmentNameEntry.Text = HelperClass.GetPerfAssessName(id);
-			perfAssessmentDueDatePicker.Date = HelperClass.GetPerfAssessDate(id);
-			PerfNotesEntry.Text = HelperClass.GetPerfAssessNotes(id);
+			perfAssessmentNameEntry.Text = DB.GetPerfAssessName(id);
+			perfAssessmentDueDatePicker.Date = DB.GetPerfAssessDate(id);
+			PerfNotesEntry.Text = DB.GetPerfAssessNotes(id);
 		}
 		private void CancelButton_Clicked(object sender, EventArgs e)
 		{
@@ -43,13 +43,13 @@ namespace track_terms.Views
 
 		private void DeleteObjAssessmentButton_Clicked(object sender, EventArgs e)
 		{
-			HelperClass.SetObjAssessmentToEmpty(id);
+			DB.SetObjAssessmentToEmpty(id);
 			Navigation.PopModalAsync();
 		}
 
 		private void DeletePerfAssessmentButton_Clicked(object sender, EventArgs e)
 		{
-			HelperClass.SetPerfAssessmentToEmpty(id);
+			DB.SetPerfAssessmentToEmpty(id);
 			Navigation.PopModalAsync();
 		}
 
@@ -67,7 +67,7 @@ namespace track_terms.Views
 			}
 			if (string.IsNullOrEmpty(ObjNotesEntry.Text))
 			{
-				HelperClass.UpdateObjAssessment(
+				DB.UpdateObjAssessment(
 					id,
 					objAssessmentNameEntry.Text,
 					"none",
@@ -77,7 +77,7 @@ namespace track_terms.Views
 			}
 			else
 			{
-				HelperClass.UpdateObjAssessment(
+				DB.UpdateObjAssessment(
 						id,
 						objAssessmentNameEntry.Text,
 						ObjNotesEntry.Text,
@@ -106,7 +106,7 @@ namespace track_terms.Views
 			}
 			else
 			{
-				HelperClass.UpdatePerfAssessment(
+				DB.UpdatePerfAssessment(
 						id,
 					perfAssessmentNameEntry.Text,
 					PerfNotesEntry.Text,

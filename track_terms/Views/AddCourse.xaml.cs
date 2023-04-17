@@ -87,22 +87,22 @@ namespace track_terms.Views
 			if (OAtoggle.IsToggled)
 			{
 				// created a method to grab the course id using the course name
-				HelperClass.AddObjAssessment(HelperClass.GetCourseId(titleEntry.Text), objAssessmentNameEntry.Text, ObjNotesEntry.Text, objAssessmentDueDatePicker.Date);
+				DB.AddObjAssessment(DB.GetCourseId(titleEntry.Text), objAssessmentNameEntry.Text, ObjNotesEntry.Text, objAssessmentDueDatePicker.Date);
 			}
 			if (!OAtoggle.IsToggled)
 			{
 				// created a method to grab the course id using the course name
-				HelperClass.AddObjAssessment(HelperClass.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
+				DB.AddObjAssessment(DB.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
 			}
 			if (PAtoggle.IsToggled)
 			{
-				HelperClass.AddPerfAssessment(HelperClass.GetCourseId(titleEntry.Text), perfAssessmentNameEntry.Text, PerfNotesEntry.Text, perfAssessmentDueDatePicker.Date);
+				DB.AddPerfAssessment(DB.GetCourseId(titleEntry.Text), perfAssessmentNameEntry.Text, PerfNotesEntry.Text, perfAssessmentDueDatePicker.Date);
 			}
 			// If user does not add assessments manually, placeholder assessments will be added for the user to edit later
 			if (!PAtoggle.IsToggled)
 			{
 				// created a method to grab the course id using the course name
-				HelperClass.AddPerfAssessment(HelperClass.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
+				DB.AddPerfAssessment(DB.GetCourseId(titleEntry.Text), "Add Assessment", String.Empty, DateTime.Now);
 			}
 
 

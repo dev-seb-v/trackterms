@@ -20,9 +20,9 @@ namespace track_terms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			nameEntry.Text = HelperClass.GetTermName(id);
-			startDatePicker.Date = HelperClass.GetTermStart(id);
-			endDatePicker.Date = HelperClass.GetTermEnd(id);
+			nameEntry.Text = DB.GetTermName(id);
+			startDatePicker.Date = DB.GetTermStart(id);
+			endDatePicker.Date = DB.GetTermEnd(id);
 		}
 
 		private void cancelButton_Clicked(object sender, EventArgs e)

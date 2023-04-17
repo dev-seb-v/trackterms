@@ -24,14 +24,14 @@ namespace track_terms.Views
 			base.OnAppearing();
 
 			id = HomePage.courseId;
-			teacherId = HelperClass.GetInstructorId(id);
-			CourseNameEntry.Text = HelperClass.returnCourseName(id);
-			StartPicker.Date = HelperClass.GetCourseStart(id);
-			EndPicker.Date = HelperClass.GetCourseEnd(id);
+			teacherId = DB.GetInstructorId(id);
+			CourseNameEntry.Text = DB.returnCourseName(id);
+			StartPicker.Date = DB.GetCourseStart(id);
+			EndPicker.Date = DB.GetCourseEnd(id);
 			StatusPicker.ItemsSource = S.statuses;
-			instructorEntry.Text = HelperClass.GetInstructorName(teacherId);
-			InstructorPhone.Text = HelperClass.GetInstructorPhone(teacherId);
-			InstructorEmailEntry.Text = HelperClass.GetInstructorEmail(teacherId);
+			instructorEntry.Text = DB.GetInstructorName(teacherId);
+			InstructorPhone.Text = DB.GetInstructorPhone(teacherId);
+			InstructorEmailEntry.Text = DB.GetInstructorEmail(teacherId);
 		}
 
 		private void saveCourseBtn_Clicked(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace track_terms.Views
 			else 
 			{
 				var status = StatusPicker.SelectedItem as Status;
-				HelperClass.UpdateCourse(
+				DB.UpdateCourse(
 					id,
 					teacherId,
 					instructorEntry.Text,

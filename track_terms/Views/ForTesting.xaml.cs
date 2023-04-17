@@ -34,7 +34,7 @@ namespace track_terms.Views
 
 		private void AssessmentButton_Clicked(object sender, EventArgs e)
 		{
-			editor.Text = HelperClass.GetObjAssessOutput(1);
+			editor.Text = DB.GetObjAssessOutput(1);
 		}
 	}
 }
