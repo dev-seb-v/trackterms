@@ -357,5 +357,49 @@ namespace track_terms.Services
 				return null;
 			}
 		}
+
+		public static int ReturnNumOfCourses(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
+
+			courses.ForEach(delegate (Course c)
+			{
+				count++;
+			});
+			return count;
+		}
+
+		public static int ReturnNumOfCompleted(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
+
+			for (int i = 0; i < courses.Count; i++)
+			{
+				if (courses[i].Status == "Completed")
+				{
+					count++;
+				}
+			}
+			return count;
+		}
+		public static int ReturnNumOfInComplete(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
+
+			for (int i = 0; i < courses.Count; i++)
+			{
+				if (courses[i].Status != "Completed")
+				{
+					count++;
+				}
+			}
+			return count;
+		}
 	}
 }
