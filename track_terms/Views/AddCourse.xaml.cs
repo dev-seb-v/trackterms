@@ -20,7 +20,7 @@ namespace track_terms.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			Title = DB.GrabTermName(HomePage.term_id);
+			Title = DB.GetTermName(HomePage.term_id);
 			termIdEntry.Text = HomePage.term_id.ToString();
 
 			Status s = new Status();

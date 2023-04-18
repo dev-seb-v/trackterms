@@ -84,11 +84,56 @@ namespace track_terms.Services
 			_db.Update(termQuery);
 		}
 
+		public static List<Term> GetNotificationsTerms()
+		{
+			Init();
 
-		#endregion
+			var allTermRecords = _dbConnection.Query<Term>("SELECT * FROM Term");
 
-		#region Course methods
-
+			return allTermRecords;
+		}
+		public static string GetTermName(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermName;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return "not found";
+			}
+		}
+		public static DateTime GetTermStart(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermStart;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
+			}
+		}
+		public static DateTime GetTermEnd(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
+			if (rowData != null)
+			{
+				return rowData.TermEnd;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return DateTime.MinValue;
+			}
+		}
 		#endregion
 
 		#region Load data methods
@@ -127,58 +172,10 @@ namespace track_terms.Services
 			_dbConnection = null;
 		}
 
-		public static void LoadDataSql()
-		{
-			Init();
-
-		}
-
-		#endregion
-
-		#region 
-
-		public static string GrabTermName(int id)
-		{
-			Init();
-			var rowData = _db.Table<Term>().FirstOrDefault(i => i.TermId == id);
-
-			if (rowData != null)
-			{
-				return rowData.TermName;
-			}
-			else { return "not found"; }
-		}
-
-		// need the object<Term> for example to be generic, string tableId (TermId), int id, datarow wanting to return
-		
-
-		//Looping through table records
-		public static void LoopingTermTable()
-		{
-
-			Init();
-
-			var allTerms = _dbConnection.Query<Term>("SELECT * FROM Term");
-
-			foreach (var term in allTerms)
-			{
-				Console.WriteLine("Name" + term.TermName);
-			}
-
-		}
-
-		public static List<Term> GetNotificationsTerms()
-		{
-			Init();
-
-			var allTermRecords = _dbConnection.Query<Term>("SELECT * FROM Term");
-
-			return allTermRecords;
-		}
-
 		#endregion
 
 		#region Instructor methods
+
 		public static void AddInstructor(String name, String phone, String email)
 		{
 			Init();
@@ -197,7 +194,53 @@ namespace track_terms.Services
 			var id = i.InstructorId ;
 		}
 
+			public static int GetInstructorId(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
 
+			if (rowData != null)
+			{
+				return rowData.InstructorId;
+			}
+			else { return 0; }
+		}
+
+		public static string GetInstructorName(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
+
+			if (rowData != null)
+			{
+				return rowData.InstructorName;
+			}
+			else { return "not found"; }
+		}
+
+		public static string GetInstructorPhone(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
+
+			if (rowData != null)
+			{
+				return rowData.InstructorPhoneNum;
+			}
+			else { return "not found"; }
+		}
+
+		public static string GetInstructorEmail(int id)
+		{
+			DB.Init();
+			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
+
+			if (rowData != null)
+			{
+				return rowData.InstructorEmail;
+			}
+			else { return "not found"; }
+		}
 		#endregion
 
 		#region generic methods
@@ -249,8 +292,198 @@ namespace track_terms.Services
 
 			_db.Delete<Course>(id);
 		}
+		public static int ReturnNumOfCourses(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
 
+			courses.ForEach(delegate (Course c)
+			{
+				count++;
+			});
+			return count;
+		}
+
+		public static int ReturnNumOfCompleted(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
+
+			for (int i = 0; i < courses.Count; i++)
+			{
+				if (courses[i].Status == "Completed")
+				{
+					count++;
+				}
+			}
+			return count;
+		}
+		public static int ReturnNumOfInComplete(int termId)
+		{
+			Init();
+			int count = 0;
+			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
+
+			for (int i = 0; i < courses.Count; i++)
+			{
+				if (courses[i].Status != "Completed")
+				{
+					count++;
+				}
+			}
+			return count;
+		}
+
+		public static string GetCourseName(string name)
+		{
+			Init();
+			var query = _db.Query<Course>("select CourseName from Course where CourseName = ?", name);
+
+			if (query != null)
+			{
+				return query[0].CourseName.ToString() + "  Found!";
+			}
+			else
+			{
+				return "not found";
+
+			}
+				
+		}
+
+		public static string returnCourseName(int id)
+		{
+			DB.Init();
+
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.CourseName;
+			}
+			else { return "not found"; }
+
+		}
+
+		public static string SearchForCourseName(int id, string course)
+		{
+			DB.Init();
+
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.TermId == id);
+
+			if (rowData.CourseName == course)
+			{
+				return course;
+			}
+			else { return "Course not found"; }
+		}
+			public static string returnStartOuput(int id)
+		{
+			DB.Init();
+
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.startOutput;
+			}
+			else { return "not found"; }
+
+		}
+		public static string returnEndOutput(int id)
+		{
+			DB.Init();
+
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.endOutput;
+			}
+			else { return "not found"; }
+
+		}
+		public static DateTime GetCourseStart(int id)
+		{
+			DateTime d = DateTime.Now;
+			DB.Init();
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.CourseStart;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return d;
+			}
+		}
+		public static DateTime GetCourseEnd(int id)
+		{
+			DateTime d = DateTime.Now;
+			DB.Init();
+			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
+
+			if (rowData != null)
+			{
+				return rowData.CourseEnd;
+			}
+			else
+			{
+				// will return generic date if not found in table
+				return d;
+			}
+		}
+
+		public static void UpdateCourse(int id, int instructorId, string instructorName, string number, string email, String name, String status, DateTime start, DateTime end)
+		{
+			DB.Init();
+
+			var CourseQuery = DB._db.Table<Course>().Where(i => i.CourseId == id).FirstOrDefault();
+			var InstructorQuery = DB._db.Table<Instructor>().Where(i => i.InstructorId == instructorId).FirstOrDefault();
+
+			if (InstructorQuery != null)
+			{
+				InstructorQuery.InstructorName = instructorName;
+				InstructorQuery.InstructorPhoneNum = number;
+				InstructorQuery.InstructorEmail = email;
+			}
+
+			if (CourseQuery != null)
+			{
+				CourseQuery.CourseName = name;
+				CourseQuery.Status = status;
+				CourseQuery.CourseStart = start;
+				CourseQuery.CourseEnd = end;
+			}
+
+			DB._db.Update(InstructorQuery);
+			DB._db.Update(CourseQuery);
+
+		}
+
+		public static int GetCourseId(string CourseName)
+		{
+			DB.Init();
+			// passing in an object of type Course and the Course Name 
+			var query = DB._db.Query<Course>("select CourseId from Course where CourseName = ?", CourseName);
+
+			if (query != null)
+			{
+				// return the courseid
+				return query[0].CourseId;
+			}
+			else
+			{
+				return -999;
+			}
+		}
 		#endregion
+
+		#region Bools Methods
 		public static void AddBool()
 		{
 			Bools B = new Bools(true, true, true, true, true, true);
@@ -359,131 +592,9 @@ namespace track_terms.Services
 			}
 		}
 
-		public static int ReturnNumOfCourses(int termId)
-		{
-			Init();
-			int count = 0;
-			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
-
-			courses.ForEach(delegate (Course c)
-			{
-				count++;
-			});
-			return count;
-		}
-
-		public static int ReturnNumOfCompleted(int termId)
-		{
-			Init();
-			int count = 0;
-			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
-
-			for (int i = 0; i < courses.Count; i++)
-			{
-				if (courses[i].Status == "Completed")
-				{
-					count++;
-				}
-			}
-			return count;
-		}
-		public static int ReturnNumOfInComplete(int termId)
-		{
-			Init();
-			int count = 0;
-			var courses = _db.Table<Course>().Where(i => i.TermId == termId).ToList();
-
-			for (int i = 0; i < courses.Count; i++)
-			{
-				if (courses[i].Status != "Completed")
-				{
-					count++;
-				}
-			}
-			return count;
-		}
-
-		public static string GetCourseName(string name)
-		{
-			Init();
-			var query = _db.Query<Course>("select CourseName from Course where CourseName = ?", name);
-
-			if (query != null)
-			{
-				return query[0].CourseName.ToString() + "  Found!";
-			}
-			else
-			{
-				return "not found";
-
-			}
-				
-		}
-
-		public static string returnCourseName(int id)
-		{
-			DB.Init();
-
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.CourseName;
-			}
-			else { return "not found"; }
-
-		}
-
-		public static string SearchForCourseName(int id, string course)
-		{
-			DB.Init();
-
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.TermId == id);
-
-			if (rowData.CourseName == course)
-			{
-				return course;
-			}
-			else { return "Course not found"; }
-		}
-		public static string returnStartOuput(int id)
-		{
-			DB.Init();
-
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.startOutput;
-			}
-			else { return "not found"; }
-
-		}
-		public static string returnEndOutput(int id)
-		{
-			DB.Init();
-
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.endOutput;
-			}
-			else { return "not found"; }
-
-		}
-
-		//public static IEnumerable<CourseStatus> status(Course course)
-		//{
-		//	DB.Init();
-		//	return DB._dbConnection.Query<CourseStatus>("select StatusDescription from CourseStatus where StatusId = ?", course.CourseId);
-		//}
-
-		//public static string getStatus(IEnumerable<CourseStatus> status, int id) 
-		//{
-		//	return status.First(s => s.StatusId == id).StatusDescription;
-		//}
-
+		#endregion
+		
+		#region Status methods
 		public static string getStatus(int id)
 		{
 			DB.Init();
@@ -495,131 +606,9 @@ namespace track_terms.Services
 			}
 			else { return "not found"; }
 		}
-
-		public static int GetInstructorId(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.InstructorId;
-			}
-			else { return 0; }
-		}
-
-		public static string GetInstructorName(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
-
-			if (rowData != null)
-			{
-				return rowData.InstructorName;
-			}
-			else { return "not found"; }
-		}
-
-		public static string GetInstructorPhone(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
-
-			if (rowData != null)
-			{
-				return rowData.InstructorPhoneNum;
-			}
-			else { return "not found"; }
-		}
-
-		public static string GetInstructorEmail(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Instructor>().FirstOrDefault(i => i.InstructorId == id);
-
-			if (rowData != null)
-			{
-				return rowData.InstructorEmail;
-			}
-			else { return "not found"; }
-		}
-
-		public static DateTime GetCourseStart(int id)
-		{
-			DateTime d = DateTime.Now;
-			DB.Init();
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.CourseStart;
-			}
-			else
-			{
-				// will return generic date if not found in table
-				return d;
-			}
-		}
-		public static DateTime GetCourseEnd(int id)
-		{
-			DateTime d = DateTime.Now;
-			DB.Init();
-			var rowData = DB._db.Table<Course>().FirstOrDefault(i => i.CourseId == id);
-
-			if (rowData != null)
-			{
-				return rowData.CourseEnd;
-			}
-			else
-			{
-				// will return generic date if not found in table
-				return d;
-			}
-		}
-
-		public static void UpdateCourse(int id, int instructorId, string instructorName, string number, string email, String name, String status, DateTime start, DateTime end)
-		{
-			DB.Init();
-
-			var CourseQuery = DB._db.Table<Course>().Where(i => i.CourseId == id).FirstOrDefault();
-			var InstructorQuery = DB._db.Table<Instructor>().Where(i => i.InstructorId == instructorId).FirstOrDefault();
-
-			if (InstructorQuery != null)
-			{
-				InstructorQuery.InstructorName = instructorName;
-				InstructorQuery.InstructorPhoneNum = number;
-				InstructorQuery.InstructorEmail = email;
-			}
-
-			if (CourseQuery != null)
-			{
-				CourseQuery.CourseName = name;
-				CourseQuery.Status = status;
-				CourseQuery.CourseStart = start;
-				CourseQuery.CourseEnd = end;
-			}
-
-			DB._db.Update(InstructorQuery);
-			DB._db.Update(CourseQuery);
-
-		}
-
-		public static int GetCourseId(string CourseName)
-		{
-			DB.Init();
-			// passing in an object of type Course and the Course Name 
-			var query = DB._db.Query<Course>("select CourseId from Course where CourseName = ?", CourseName);
-
-			if (query != null)
-			{
-				// return the courseid
-				return query[0].CourseId;
-			}
-			else
-			{
-				return -999;
-			}
-		}
+		#endregion 
+		
+		#region Assessment Methods
 		public static void AddObjAssessment(int id, string name, string notes, DateTime due)
 		{
 
@@ -833,48 +822,8 @@ namespace track_terms.Services
 			}
 		}
 
-		public static string GetTermName(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
-			if (rowData != null)
-			{
-				return rowData.TermName;
-			}
-			else
-			{
-				// will return generic date if not found in table
-				return "not found";
-			}
-		}
-		public static DateTime GetTermStart(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
-			if (rowData != null)
-			{
-				return rowData.TermStart;
-			}
-			else
-			{
-				// will return generic date if not found in table
-				return DateTime.MinValue;
-			}
-		}
-		public static DateTime GetTermEnd(int id)
-		{
-			DB.Init();
-			var rowData = DB._db.Table<Term>().FirstOrDefault(i => i.TermId == id);
-			if (rowData != null)
-			{
-				return rowData.TermEnd;
-			}
-			else
-			{
-				// will return generic date if not found in table
-				return DateTime.MinValue;
-			}
-		}
+		#endregion
+
 
 	}
 }

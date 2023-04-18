@@ -5,22 +5,19 @@
 			 Title="For App Tester">
 
 		<ContentPage.Content>
-		
+
 		<StackLayout HorizontalOptions="Center" VerticalOptions="Start" Margin="10">
 			<Label Text="Testing" FontSize="Large"/>
 			<Button Text="Clear Data" x:Name="clearData" Clicked="clearData_Clicked" HorizontalOptions="Center"/>
 			<Button Text="Load Data" x:Name="loadDataButton" Clicked="loadDataButton_Clicked" HorizontalOptions="Center"/>
-			<StackLayout Orientation="Horizontal">
-				<Button x:Name="AssessmentButton" Clicked="AssessmentButton_Clicked" Text="Get Assessment Info"/>
-			</StackLayout>
 			<StackLayout>
-				<Editor x:Name="editor" Keyboard="Plain" AutoSize="TextChanges" MaxLength="180">
-					
-				</Editor>
+				<Label Text="If TermId of 1 is entered, the DB should return 'Spring 2023' "/>
+				<Entry x:Name="termIdEntry" Placeholder="Enter the number 1"/>
+				<Button Text="Test for correct Term Name"
+						x:Name="testBtn" Clicked="testBtn_Clicked"/>
+				<Label x:Name="outputLabel"/>
 			</StackLayout>
 		</StackLayout>
-		
-			
 	</ContentPage.Content>
 	
 </ContentPage>
