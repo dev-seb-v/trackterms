@@ -30,6 +30,11 @@ namespace track_terms.Views
 
 			statusPicker.ItemsSource = s.statuses;
 		}
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			HomePage hp = new HomePage();
+		}
 		private void saveCourseBtn_Clicked(object sender, EventArgs e)
 		{
 			if (string.IsNullOrEmpty(titleEntry.Text))

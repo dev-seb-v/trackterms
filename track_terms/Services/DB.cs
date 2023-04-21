@@ -12,6 +12,7 @@ namespace track_terms.Services
 {
 	public static class DB
 	{
+		#region class variables/SQLite Connection service
 		public static SQLiteConnection _db;
 		public static SQLiteConnection _dbConnection;
 		public static string databasePath = Path.Combine(FileSystem.AppDataDirectory, "TermTracker.db");
@@ -35,7 +36,7 @@ namespace track_terms.Services
 			_db.CreateTable<ObjectiveAssessment>();
 			_db.CreateTable<Bools>();
 		}
-
+		#endregion
 		#region Terms methods
 
 		public static void AddTerm(String name, DateTime start, DateTime end)
@@ -135,7 +136,6 @@ namespace track_terms.Services
 			}
 		}
 		#endregion
-
 		#region Load data methods
 
 		public static void LoadData()
@@ -173,7 +173,6 @@ namespace track_terms.Services
 		}
 
 		#endregion
-
 		#region Instructor methods
 
 		public static void AddInstructor(String name, String phone, String email)
@@ -242,7 +241,6 @@ namespace track_terms.Services
 			else { return "not found"; }
 		}
 		#endregion
-
 		#region generic methods
 		public static void AddItem<T>(T item)
 		{
@@ -251,7 +249,6 @@ namespace track_terms.Services
 		}
 
 		#endregion
-
 		#region Course Methods
 
 		public static void AddCourse(int id, string status, string name, DateTime start, DateTime end, int instructor_id) 
@@ -482,7 +479,6 @@ namespace track_terms.Services
 			}
 		}
 		#endregion
-
 		#region Bools Methods
 		public static void AddBool()
 		{
@@ -593,7 +589,6 @@ namespace track_terms.Services
 		}
 
 		#endregion
-		
 		#region Status methods
 		public static string getStatus(int id)
 		{
@@ -607,7 +602,6 @@ namespace track_terms.Services
 			else { return "not found"; }
 		}
 		#endregion 
-		
 		#region Assessment Methods
 		public static void AddObjAssessment(int id, string name, string notes, DateTime due)
 		{
@@ -823,7 +817,5 @@ namespace track_terms.Services
 		}
 
 		#endregion
-
-
 	}
 }
